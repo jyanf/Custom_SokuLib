@@ -13,6 +13,8 @@
 #else
 #include <arpa/inet.h>
 #endif
+#include "Character.hpp"
+#include "Deque.hpp"
 #include "InputManager.hpp"
 #include "Weather.hpp"
 
@@ -404,6 +406,32 @@ namespace SokuLib
 	std::string GameTypeToString(GameType);
 	void displayPacketContent(std::ostream &stream, const Packet &packet);
 	void displayGameEvent(std::ostream &stream, const GameEvent &event);
+
+	// The native struct of GAME packets in vanilla game.
+	struct IPacket {
+		void *vtable;
+		char padding[4];
+		inline size_t encode(GameEvent * buf) const {
+			return (this->**reinterpret_cast<size_t (IPacket::**)(GameEvent *) const>(this->vtable))(buf);
+		};
+		inline void decode(GameEvent * const buf) {
+			(this->*reinterpret_cast<void (IPacket::**)(GameEvent * const)>(this->vtable)[1])(buf);
+		};
+	};
+
+	struct DPP_REPLAY : IPacket {
+		uint32_t frameId;
+		uint32_t lastFrameIdIfMatchEndsElseZero;
+		uint8_t matchId;
+		char padding[3];
+		Deque<BattleKeys> inputs;
+		inline DPP_REPLAY() {
+			this->vtable = (void *) ADDR_VTBL_DPP_REPLAY;
+		}
+		~DPP_REPLAY() {
+			reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(&this->inputs);
+		}
+	};
 }
 
 #pragma pack(pop)
