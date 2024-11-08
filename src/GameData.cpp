@@ -6,6 +6,7 @@
 
 namespace SokuLib {
 	float (&v2::groundHeight)[1280] = *(float (*)[1280])0x8971D8;
+	void (&loadDatFile)(const char *path) = *(void (*)(const char *path))ADDR_LOAD_DAT;
 
 	v2::GameDataManager*& v2::GameDataManager::instance = *reinterpret_cast<GameDataManager**>(SokuLib::ADDR_GAME_DATA_MANAGER);
 	v2::SaveDataManager& v2::SaveDataManager::instance = *reinterpret_cast<SaveDataManager*>(0x899f60);

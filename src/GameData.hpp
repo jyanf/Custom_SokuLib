@@ -73,6 +73,7 @@ namespace v2 {
 	};
 
 	extern float (&groundHeight)[1280];
+	extern void (&loadDatFile)(const char *path);
 }}
 
 #endif

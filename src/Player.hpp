@@ -66,7 +66,8 @@ namespace v2 {
 		float attackPower, defensePower;
 		float unknown538, unknown53C, unknown540;
 		float spellDmgMultiplier, specialDmgMultiplier, meterGainMultiplier, lifeStealMultiplier, discardMultiplier;
-		float unknown558, unknown55C;
+		float reflectDamageMultiplier; // Normally at 0. Used for Suwako's blue curse
+		float unknown55C;
 
 		short grimoireCount; // = 0
 		char unknown562[2]; // align 2?
@@ -173,7 +174,10 @@ namespace v2 {
 		bool skillCancelsUsed[5]; // = 0;
 		char unknown805[3]; // align 3?
 		float riverMistTimer; // = .0;
-		char unknown80C[4]; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
+		char unknown80C; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
+		char unknown80D; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
+		bool isBELocked; // Automatically set to true when opponent is in a spell animation (between 600 and 688)
+		char unknown80F; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
 		int unknown810, unknown814; // 48b000: = 0; (auraFXDelay, auraDuration)
 		short unknown818[10]; // = 0;
 		float unknown82C, unknown830; // = .0;
