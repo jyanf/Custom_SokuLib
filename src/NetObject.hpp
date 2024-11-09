@@ -32,14 +32,36 @@ namespace SokuLib
 		Vector<struct ClientInfo> g_psvClients;
 	};
 
+	struct DecodedInputPacket {
+		void **vtable;
+		int unknown;
+		unsigned frame;
+		unsigned char scene;
+		SokuLib::Deque<unsigned short> inputs;
+	};
+
+	struct DecodedGameLoadedPacket {
+		void **vtable;
+		int unknown;
+		unsigned char scene;
+	};
+
 	struct NetObject {
-		char unknown[4];
+		void **vtable;
 		char profile1name[32];
 		char profile2name[32];
-		char unknown2[84];
+		int unknown;
+		CriticalSection baseCSection;
+		// 0x64
+		DecodedGameLoadedPacket loaded1;
+		DecodedGameLoadedPacket loaded2;
+		char offset_0x7C[0x1C];
+		// 0x98
 		int frameId;
 		// 0x9C
-		char offset_0x9C[0x5C];
+		char offset_0x9C[0x40];
+		// 0xDC
+		CriticalSection inputCSection;
 		// 0xF8
 		KeymapManager p1InputMgr;
 		Deque<unsigned short> p1Inputs;
