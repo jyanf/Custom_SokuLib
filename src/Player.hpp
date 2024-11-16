@@ -76,7 +76,7 @@ namespace v2 {
 		// 0x56C: = {0,0,0,0, 0,1,1,0, 0,0,0,0, 0,?,?,?};
 		bool canGrazeMelee, crushOnWB, skillsMax, unknown56F;
 		bool unknown570, lockedInStageX, lockedInStageY; unsigned char score;
-		unsigned char roundsWins, unknown575, unknown576, unknown577, unknown578;
+		unsigned char roundsWins, unknown575, unknown576, kdAnimationFinished, unknown578;
 		unsigned char unknown579[3]; // align 3?
 
 		//offset 0x57c
@@ -129,12 +129,11 @@ namespace v2 {
 		short spellBgTimer; // = 0
 		unsigned char spellBgId;
 		char unknown743;
-		float additionalSpeedX; // 46b9a0: = .0
-		float unknown748; // 46b9a0: = .0
+		Vector2f additionalSpeed; // 46b9a0: = .0
 		float riverMistAdditionalSpeed; // 46b9a0: = .0
 
 		// offset 0x750
-		KeyManager& keyManager;
+		KeyManager* keyManager;
 		struct InputInfo {
 			// offset 0x754
 			KeyInputLight keyInput; // sizeof = 0x20

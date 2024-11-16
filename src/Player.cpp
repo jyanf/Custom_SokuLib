@@ -93,7 +93,7 @@ namespace v2 {
 	auto& commonTextures = *reinterpret_cast<Vector<int>*>(0x89aac4);
 
 	Player::Player(const PlayerInfo& playerInfo) :
-		keyManager(*playerInfo.keyManager)
+		keyManager(playerInfo.keyManager)
 	{
 		this->gameData.owner = this->gameData.ally = this;
 
