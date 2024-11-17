@@ -46,6 +46,16 @@ namespace SokuLib
 		unsigned char scene;
 	};
 
+	struct NetPlayerData {
+		int charId;
+		char unknown1;
+		char paletteId;
+		char unknown2;
+		char deckId;
+		Deque<unsigned short> cards;
+		void *unknown3;
+	};
+
 	struct NetObject {
 		void **vtable;
 		char profile1name[32];
@@ -68,7 +78,19 @@ namespace SokuLib
 		// 0x174
 		KeymapManager p2InputMgr;
 		Deque<unsigned short> p2Inputs;
-		char offset_0x1F0[0x8C];
+		char offset_0x1F0[0x20];
+
+		// 0x210
+		char stageId;
+		char musicIdId;
+		short __padding;
+
+		NetPlayerData playerData[2];
+		unsigned randomSeed;
+
+		// 0x258
+		char offset_0x258[0x24];
+
 		// 0x27C
 		int p1ProfileNameTexture;
 		int p2ProfileNameTexture;
