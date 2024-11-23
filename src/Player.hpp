@@ -36,12 +36,25 @@ namespace v2 {
 			//void FUN_46ec50();
 		} stand;
 
+		union ComboModifers {
+			char value;
+			struct {
+				/* 0x01 */ bool liftAttack: 1;
+				/* 0x02 */ bool smashAttack: 1;
+				/* 0x04 */ bool borderResist: 1;
+				/* 0x08 */ bool chainArt: 1;
+				/* 0x10 */ bool chainSpell: 1;
+				/* 0x20 */ bool counter: 1;
+			};
+		};
+
 		// offset 0x498
 		short redHP;
 		char groundDashCount, airDashCount, unknown49C, unknown49D; // = 0
 		short currentSpirit, maxSpirit; // = 100
 		short spiritRegenDelay, timeWithBrokenOrb, spellStopCounter, timeStop, unknown4AA; // = 0
-		char unknown4AC, unknown4AD; // = 0
+		char unknown4AC;
+		ComboModifers comboModifiers; // = 0
 		char unknown4AE[2]; // align 2?
 		float comboRate; // = 1.0
 		short comboCount, comboDamage, comboLimit, untech;
