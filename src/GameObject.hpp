@@ -271,7 +271,6 @@ namespace v2 {
 	class VTableGameObjectList : public GameObjectList<T> {
 	public:
 		inline VTableGameObjectList(Player* player) : GameObjectList<T>(player) {} // TODO i think it reserves 256 objects, but not sure
-		~VTableGameObjectList() override { (this->*union_cast<char *(VTableGameObjectList::*)()>(((void **)base_vtable)[0]))(); };
 
 		GameObject* createObject(GameObject* a0, Player* a1, short a2, float a3, float a4, char a5, char a6, void* a7, unsigned int a8) override
 		{
