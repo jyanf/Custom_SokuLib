@@ -31,6 +31,9 @@ namespace v2 {
 		// 0x4C
 		List<Player*> destroyQueue;
 
+		void createPlayer(int slot, PlayerInfo &info);
+
+		static Player *createPlayer(PlayerInfo &info); // Not thread safe
 		static GameDataManager*& instance;
 	}; // 0x58
 
