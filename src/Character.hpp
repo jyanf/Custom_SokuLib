@@ -55,7 +55,8 @@ namespace SokuLib
 		/* 32 */ CHARACTER_SEKIBANKI,
 		/* 33 */ CHARACTER_SATORI,
 		/* 34 */ CHARACTER_RAN,
-		/* 35 */ CHARACTER_TEWI
+		/* 35 */ CHARACTER_TEWI,
+		/* 36 */ CHARACTER_MAMIZOU
 	};
 
 	struct PlayerInfo {
