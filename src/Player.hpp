@@ -164,18 +164,8 @@ namespace v2 {
 			// align 0x3
 		} inputData;
 
-		short dashTimer;
-		short flightTargetAngle;
-		short flightAngleDiff;
-		short flightTimer;
-		short unknown7D8; // = 0;
-		char unknown7DA[2]; // align 0x2?
-		float flightSpeed; // = .0;
-		float flightAngle; // = .0;
-		float unknown7E4; // = .0;
-		float unknown7E8; // = .0;
-		float unknown7EC; // = .0;
-		float unknown7F0; // = .0;
+		short gpShort[6];
+		float gpFloat[6];
 		bool chargedAttack;
 		bool blockObjectSpawned;
 		char unknown7F6;
