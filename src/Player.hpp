@@ -250,7 +250,7 @@ namespace v2 {
 		void useSpellCard(int id, short action); // 0x487b60 (+0x4ad flag 0x10)
 		void useSkill(int id, short action); // 0x487ba0 (+0x4ad flag 0x08)
 		void onSkillUpgrade(); // 0x489660
-		void Unknown487C20(); // swapDirection?
+		void checkTurnAround(); // swapDirection?
 		void playSpellBackground(int id, int timer);
 		bool applyGroundMechanics(); // 0x487ca0
 		// 0x487e90 always returns zero
