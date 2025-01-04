@@ -164,8 +164,8 @@ namespace v2 {
 			// align 0x3
 		} inputData;
 
-		short gpShort[6];
-		float gpFloat[6];
+		short gpShort[6]; // 0x7D0 - 0x7DA
+		float gpFloat[6]; // 0x7DC - 0x7F0
 		bool chargedAttack;
 		bool blockObjectSpawned;
 		char unknown7F6;
