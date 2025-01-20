@@ -55,6 +55,8 @@ add_library(
 	src/IEffectManager.hpp
 	src/IFileReader.cpp
 	src/IFileReader.hpp
+	src/InfoManager.cpp
+	src/InfoManager.hpp
 	src/InputManager.cpp
 	src/InputManager.hpp
 	src/Key.cpp

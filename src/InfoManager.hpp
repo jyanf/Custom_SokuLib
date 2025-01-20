@@ -45,7 +45,7 @@ namespace v2 {
 		float unknown488;
 		CDesign::Number* unknown48C;
 		CDesign::Number* unknown490;
-		char unknown494[0x04];
+		int unknown494;
 
 		static InfoManagerBase*& instance; // 0x8985e8
 	};
