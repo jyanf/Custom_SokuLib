@@ -74,7 +74,11 @@ namespace v2 {
 	void GameObjectBase::updatePhysics() {}
 
 	void GameObjectBase::setHitBoxData(int left, int top, int right, int bottom, short rotation, short rotAnchorX, short rotAnchorY) {
-		return (this->*union_cast<void (GameObjectBase::*)(int, int, int, int, short, short, short)>(0x4B0E40))(left, top, right, bottom, rotation, rotAnchorX, rotAnchorY);
+		(this->*union_cast<void (GameObjectBase::*)(int, int, int, int, short, short, short)>(0x4B0E40))(left, top, right, bottom, rotation, rotAnchorX, rotAnchorY);
+	}
+
+	void GameObjectBase::damageOpponent(int damage, int rate, short hitCount, bool applyModifiers) {
+		(this->*union_cast<void(GameObjectBase::*)(int, int, short, bool)>(0x4649B0))(damage, rate, hitCount, applyModifiers);
 	}
 
 	void GameObject::trackOpponent(float min, float max, float yOffset) {
