@@ -76,9 +76,16 @@ namespace v2 {
 		int weatherId; // = 0;
 
 		// 0x530: = {1,1,1,1, 0,1,1,1, 0,0,0,1};
-		float attackPower, defensePower;
-		float unknown538, unknown53C, unknown540;
-		float spellDmgMultiplier, specialDmgMultiplier, meterGainMultiplier, lifeStealMultiplier, discardMultiplier;
+		float attackPower;
+		float defensePower;
+		float unknown538;
+		float unknown53C;
+		float unknown540;
+		float spellDmgMultiplier;
+		float specialDmgMultiplier;
+		float meterGainMultiplier;
+		float lifeStealMultiplier;
+		float discardMultiplier;
 		float reflectDamageMultiplier; // Normally at 0. Used for Suwako's blue curse
 		float unknown55C;
 
