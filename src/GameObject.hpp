@@ -42,7 +42,7 @@ namespace v2 {
 
 		// offset 0x184 (hp and state)
 		short HP; // = 10000
-		short MaxHP; // = 10000
+		short maxHP; // = 10000
 		int unknown188 = 0;
 		char skillIndex = -1;
 		char unknown18d[3]; // align 0x3?
@@ -168,7 +168,7 @@ namespace v2 {
 
 		inline GameObject() {
 			this->HP = 0;
-			this->MaxHP = 0;
+			this->maxHP = 0;
 		}
 		virtual ~GameObject();
 		virtual GameObject* createObject(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
