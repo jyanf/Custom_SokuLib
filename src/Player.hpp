@@ -80,7 +80,7 @@ namespace v2 {
 		float defensePower;
 		float unknown538;
 		float unknown53C;
-		float unknown540;
+		float bonusProration;
 		float spellDmgMultiplier;
 		float specialDmgMultiplier;
 		float meterGainMultiplier;

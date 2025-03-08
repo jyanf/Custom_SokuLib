@@ -26,21 +26,29 @@ namespace v2 {
 		// 0x15C
 		char unknown15C[0x10];
 		// 0x16C
+		// Contructor:
+		// Init:
+		// void FUN_00478c50 (HudPlayerState3 *this, CDesignBase *obj, Player *player)
+		// FUN_00478c50(this_00, (CDesignBase *)&this->field_0x100, player);
 		struct {
 			CDesign* design;
 			Player* player;
 			char unknown08[0x18]; // align 3 on end
 			Deque<int> unknown20;
-		} unknown16C[2];
+		} state1[2];
 		// 0x1D4
+		// Contructor:
+		// Init:
+		// void FUN_00435f10(HudPlayerStateUnknown2 *this, DeckInfo *deckInfo, int index)
+		// FUN_00435f10(this, &player->deckInfo, playerIndex);
 		struct {
-			void* unknown000;
+			SokuLib::DeckInfo* deck;
 			Sprite unknown004, unknown098;
 			char unknown12C[0x28];
-		} unknown1D4[2];
+		} state2[2];
 		// 0x47C
-		Sprite* unknown47C;
-		Sprite* unknown480;
+		Sprite* p1Portrait;
+		Sprite* p2Portrait;
 		int unknown484;
 		float unknown488;
 		CDesign::Number* unknown48C;
@@ -52,6 +60,12 @@ namespace v2 {
 
 	class InfoManager : public InfoManagerBase {
 	public:
+		// Contructor:
+		// void FUN_0047f070(HudPlayerState *param_1, char param_1_00, CDesignBase *param_3, CDesignBase *param_4, int param_5)
+		// FUN_0047f070(&this->p1state, 0,(CDesignBase *)&this->field_0x98,(CDesignBase *)&this->field_0xcc,&this->field_0x4);
+		// Init:
+		// void FUN_0047ede0(HudPlayerState *param_1, Player *param_1_00)
+		// FUN_0047ede0(this, player);
 		// 0x498
 		struct {
 			char id;
