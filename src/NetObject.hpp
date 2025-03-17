@@ -82,7 +82,7 @@ namespace SokuLib
 
 		// 0x210
 		char stageId;
-		char musicIdId;
+		char musicId;
 		short __padding;
 
 		NetPlayerData playerData[2];
