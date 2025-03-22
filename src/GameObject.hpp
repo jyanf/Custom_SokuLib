@@ -41,9 +41,9 @@ namespace v2 {
 		List<GameObjectBase*> childrenA;
 
 		// offset 0x184 (hp and state)
-		short HP; // = 10000
+		short hp; // = 10000
 		short maxHP; // = 10000
-		int unknown188 = 0;
+		int superArmorDamageTaken = 0;
 		char skillIndex = -1;
 		char unknown18d[3]; // align 0x3?
 		CollisionType collisionType = COLLISION_TYPE_NONE;
@@ -167,7 +167,7 @@ namespace v2 {
 		List<GameObject*> childrenB;
 
 		inline GameObject() {
-			this->HP = 0;
+			this->hp = 0;
 			this->maxHP = 0;
 		}
 		virtual ~GameObject();

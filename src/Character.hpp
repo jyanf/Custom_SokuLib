@@ -8,7 +8,6 @@
 
 #include <vector>
 #include <string>
-#include <windows.h>
 #include "Deque.hpp"
 #include "InputManager.hpp"
 #include "SokuAddresses.hpp"

@@ -36,6 +36,7 @@ namespace SokuLib
 	Scene &sceneId = *reinterpret_cast<Scene *>(ADDR_SCENE_ID);
 	HANDLE &LGThread = *reinterpret_cast<HANDLE *>(ADDR_LOAD_GRAPHICS_THREAD);
 	SceneBase *&currentScene = *reinterpret_cast<SceneBase **>(ADDR_CURRENT_SCENE);
+	void *&fadePtr = *reinterpret_cast<void **>(0x8A0008);
 
 	void changeScene(Scene newScene)
 	{

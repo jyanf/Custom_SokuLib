@@ -266,6 +266,7 @@ namespace SokuLib
 	void waitForSceneChange();
 
 	extern std::vector<std::string> sceneNames;
+	extern void *&fadePtr;
 }
 
 #endif //SOKULIB_SCENES_HPP
