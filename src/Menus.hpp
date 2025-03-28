@@ -55,9 +55,9 @@ namespace SokuLib
 		const int* valueAddr = 0; // valueAddr = &inputMgrs.input.<key>;
 		int pos = 0, pgPos = 0;
 
-		inline void set(const int* valueAddr, int max = 1, int pos = 0) {
+		inline void set(const int* valueAddr, int max = 1, int pos = 0, int dRows = 0) {
 			this->max = max;
-			this->dRows = 0;
+			this->dRows = dRows;
 			this->valueAddr = valueAddr;
 			this->pos = this->pgPos = pos;
 		}
