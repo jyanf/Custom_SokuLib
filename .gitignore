@@ -8,5 +8,3 @@ cmake-build-*
 *.dll
 *.obj
 *.gch
-/.vs
-/out
