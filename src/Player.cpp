@@ -137,7 +137,7 @@ namespace v2 {
 	SokuLib::CardInfo* Player::DeckInfo::cardLookup(unsigned short id) { return (this->*union_cast<SokuLib::CardInfo* (Player::DeckInfo::*)(unsigned short)>(0x436620))(id); }
 	void Player::loadResources() { return (this->*union_cast<void(Player::*)()>(0x46c0b0))(); }
 	bool Player::updateGroundMovement(float value) { return (this->*union_cast<bool(Player::*)(float)>(0x487740))(value); }
-	bool Player::updateAirMovement(float a0, float a1) { return (this->*union_cast<bool(Player::*)(float,float)>(0x4877C0))(a0, a1); }
+	void Player::decideShotAngle(float maxA, float minA) { return (this->*union_cast<bool(Player::*)(float,float)>(0x4877C0))(maxA, minA); }//set this+0x7F0, which is now gpFloat[5]
 	void Player::addCardMeter(int value) { return (this->*union_cast<void(Player::*)(int)>(0x487870))(value); }
 	void Player::checkTurnAround() { return (this->*union_cast<void(Player::*)()>(0x487C20))(); }
 	void Player::playSpellBackground(int a0, int a1) { return (this->*union_cast<void(Player::*)(int, int)>(0x46b370))(a0, a1); }

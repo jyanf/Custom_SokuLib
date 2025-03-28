@@ -239,7 +239,7 @@ namespace v2 {
 		// Gets the character from this->characterIndex
 		void loadResources(); // 0x46c0b0
 		bool updateGroundMovement(float value); // 0x487740
-		bool updateAirMovement(float, float); // 0x4877C0
+		void decideShotAngle(float, float); // 0x4877C0
 		void addCardMeter(int); // 0x487870
 		bool handleCardSwitch(); // 0x487890 input related
 		bool useSystemCard(int moveLock); // 0x48a700
