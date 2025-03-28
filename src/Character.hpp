@@ -61,7 +61,7 @@ namespace SokuLib
 	struct PlayerInfo {
 		Character character;
 		unsigned char isRight;
-		unsigned char palette;
+		char palette;
 		unsigned char inputType;
 		unsigned char deck;
 		Deque<unsigned short> effectiveDeck;
