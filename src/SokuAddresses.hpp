@@ -67,6 +67,8 @@ namespace SokuLib
 		ADDR_ACTIVATE_MENU                          = 0x0043E130,
 		ADDR_PLAY_SE_WAVE_BUFFER                    = 0x0043E1E0,
 		ADDR_SET_BATTLE_MODE                        = 0x0043E9A0,
+		ADDR_MENUCURSOR_PGUP						= 0x004432d0,
+		ADDR_MENUCURSOR_PGDN						= 0x00443340,
 		ADDR_MENUCURSOR_RENDER                      = 0x00443A50,
 		ADDR_HOST_FCT                               = 0x00446A40,
 		ADDR_JOIN_FCT                               = 0x00446B20,

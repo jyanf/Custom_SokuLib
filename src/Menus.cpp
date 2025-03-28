@@ -72,6 +72,12 @@ namespace SokuLib
 	bool MenuCursor::update() {
 		return (this->*union_cast<bool (MenuCursor::*)()>(ADDR_MENUCURSOR_UPDATE))();
 	}
+	void MenuCursor::pgDn() {
+		(this->*union_cast<bool (MenuCursor::*)()>(ADDR_MENUCURSOR_PGDN))();
+	}
+	void MenuCursor::pgUp() {
+		(this->*union_cast<bool (MenuCursor::*)()>(ADDR_MENUCURSOR_PGUP))();
+	}
 
 	void MenuCursor::render(float x, float y, float width) {
 		union_cast<void(*)(float, float, float)>(ADDR_MENUCURSOR_RENDER)(x, y, width);

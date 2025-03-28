@@ -51,18 +51,20 @@ namespace SokuLib
 
 	class MenuCursor {
 	public:
-		int max = 1, unknown04 = 0;
+		int max = 1, dRows = 0;
 		const int* valueAddr = 0; // valueAddr = &inputMgrs.input.<key>;
-		int pos = 0, unknown10 = 0;
+		int pos = 0, pgPos = 0;
 
-		inline void set(const int* valueAddr, int max = 1, int pos = 0) {
+		inline void set(const int* valueAddr, int max = 1, int pos = 0, int dRows = 0) {
 			this->max = max;
-			//this->unknown04 = 0;
+			this->dRows = dRows;
 			this->valueAddr = valueAddr;
-			this->pos = this->unknown10 = pos;
+			this->pos = this->pgPos = pos;
 		}
 
 		bool update();
+		void pgDn();
+		void pgUp();
 		static void render(float x, float y, float width);
 	};
 }
