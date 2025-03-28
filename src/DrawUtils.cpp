@@ -1,7 +1,7 @@
 //
 // Created by PinkySmile on 03/03/2021.
 //
-
+#pragma comment(lib, "../lib/d3dx9.lib")
 #include <d3d9.h>
 #include <d3dx9tex.h>
 #include <cmath>

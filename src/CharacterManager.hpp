@@ -36,7 +36,8 @@ namespace SokuLib
 		unsigned short limit;
 	};
 
-	typedef DrawUtils::DxSokuColor Color;
+	//typedef DrawUtils::DxSokuColor Color;
+	typedef unsigned int Color;
 
 	struct RenderInfo {
 		Color color = 0xffffffff;
