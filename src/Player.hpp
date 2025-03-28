@@ -529,7 +529,17 @@ namespace v2 {
 
 	class PlayerSuwako : public Player {
 	public:
-		char unknown890[0x18];
+		char unknown890[4];
+		//d.22, a1.22 stuff
+		int curseType;//0x894, enum {R=0, G, B}
+		int curseTimer;//0x898
+		
+		//a2.22 stuff
+		bool orbsSpawned;//0x89C
+		bool orbsFastSpin;//0x89D(unused)
+		char unknown89E[2];//align 2
+		int punishType;//0x8A0, enum {R, G, B}
+		int punishTimer;//0x8A4
 
 		PlayerSuwako(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
