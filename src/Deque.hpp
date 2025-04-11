@@ -6,6 +6,7 @@
 #define SOKULIB_DEQUE_HPP
 
 
+#include <windows.h>
 #include "Memory.hpp"
 #include <xutility>
 #include <stdexcept>
@@ -120,6 +121,11 @@ namespace SokuLib {
 		inline T& back() const { return *--end(); }
 		T& operator[](size_t index) { return *(begin()+index); }
 		T& at(size_t index) {
+			if (index >= this->m_size) throw std::out_of_range("invalid deque<T> subscript");
+			return *(begin()+index);
+		}
+		const T& operator[](size_t index) const { return *(begin()+index); }
+		const T& at(size_t index) const {
 			if (index >= this->m_size) throw std::out_of_range("invalid deque<T> subscript");
 			return *(begin()+index);
 		}

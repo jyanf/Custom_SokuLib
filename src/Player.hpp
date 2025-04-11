@@ -239,7 +239,7 @@ namespace v2 {
 		// Gets the character from this->characterIndex
 		void loadResources(); // 0x46c0b0
 		bool updateGroundMovement(float value); // 0x487740
-		bool updateAirMovement(float, float); // 0x4877C0
+		float decideShotAngle(float, float); // 0x4877C0
 		void addCardMeter(int); // 0x487870
 		bool handleCardSwitch(); // 0x487890 input related
 		bool useSystemCard(int moveLock); // 0x48a700
@@ -282,6 +282,16 @@ namespace v2 {
 			// Mimics 0x46EB30
 			return this->objectList->createObject(nullptr, this, action, x, y, direction, layer, nullptr, 0);
 		}
+
+		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Player, T>>>
+		T &to() {
+			return *reinterpret_cast<T *>(this);
+		}
+
+		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Player, T>>>
+		T &to() const {
+			return *reinterpret_cast<const T *>(this);
+		}
 	};
 	static_assert(sizeof(Player) == 0x890);
 
@@ -311,27 +321,236 @@ namespace v2 {
 	void VUnknown5C() override; \
 	bool VUnknown60(int a) override;
 
-	class PlayerReimu     : public Player { public: char unknown890[0x2C]; DECL_PLAYER_VIRTUALS() PlayerReimu(const PlayerInfo&); };
-	class PlayerMarisa    : public Player { public: char unknown890[0x1C]; DECL_PLAYER_VIRTUALS() PlayerMarisa(const PlayerInfo&); };
-	class PlayerSakuya    : public Player { public: char unknown890[0x10]; DECL_PLAYER_VIRTUALS() PlayerSakuya(const PlayerInfo&); };
-	class PlayerAlice     : public Player { public: char unknown890[0x34]; DECL_PLAYER_VIRTUALS() PlayerAlice(const PlayerInfo&); };
-	class PlayerPatchouli : public Player { public: char unknown890[0x18]; DECL_PLAYER_VIRTUALS() PlayerPatchouli(const PlayerInfo&); };
-	class PlayerYoumu     : public Player { public: char unknown890[0x5C]; DECL_PLAYER_VIRTUALS() PlayerYoumu(const PlayerInfo&); ~PlayerYoumu() override; };
-	class PlayerRemilia   : public Player { public: char unknown890[0x04]; DECL_PLAYER_VIRTUALS() PlayerRemilia(const PlayerInfo&); };
-	class PlayerYuyuko    : public Player { public: char unknown890[0x1C]; DECL_PLAYER_VIRTUALS() PlayerYuyuko(const PlayerInfo&); };
-	class PlayerYukari    : public Player { public: char unknown890[0x44]; DECL_PLAYER_VIRTUALS() PlayerYukari(const PlayerInfo&); };
-	class PlayerSuika     : public Player { public: char unknown890[0x08]; DECL_PLAYER_VIRTUALS() PlayerSuika(const PlayerInfo&); };
-	class PlayerUdonge    : public Player { public: char unknown890[0x28]; DECL_PLAYER_VIRTUALS() PlayerUdonge(const PlayerInfo&); };
-	class PlayerAya       : public Player { public: char unknown890[0x08]; DECL_PLAYER_VIRTUALS() PlayerAya(const PlayerInfo&); };
-	class PlayerKomachi   : public Player { public: char unknown890[0x08]; DECL_PLAYER_VIRTUALS() PlayerKomachi(const PlayerInfo&); };
-	class PlayerIku       : public Player { public: char unknown890[0x18]; DECL_PLAYER_VIRTUALS() PlayerIku(const PlayerInfo&); };
-	class PlayerTenshi    : public Player { public: char unknown890[0xA0]; DECL_PLAYER_VIRTUALS() PlayerTenshi(const PlayerInfo&); }; // TODO There's something wrong with tenshi
-	class PlayerSanae     : public Player { public: char unknown890[0x20]; DECL_PLAYER_VIRTUALS() PlayerSanae(const PlayerInfo&); };
-	class PlayerChirno    : public Player { public: char unknown890[0x04]; DECL_PLAYER_VIRTUALS() PlayerChirno(const PlayerInfo&); };
-	class PlayerMeirin    : public Player { public: char unknown890[0x04]; DECL_PLAYER_VIRTUALS() PlayerMeirin(const PlayerInfo&); };
-	class PlayerUtsuho    : public Player { public: char unknown890[0x18]; DECL_PLAYER_VIRTUALS() PlayerUtsuho(const PlayerInfo&); ~PlayerUtsuho() override; };
-	class PlayerSuwako    : public Player { public: char unknown890[0x18]; DECL_PLAYER_VIRTUALS() PlayerSuwako(const PlayerInfo&); };
-	class PlayerNamazu    : public Player { public: char unknown890[0x10]; DECL_PLAYER_VIRTUALS() PlayerNamazu(const PlayerInfo&); };
+	class PlayerReimu : public Player {
+	public:
+		char unknown890[0x24];
+		unsigned short fantasyHeavenTimer;
+		unsigned short fantasyHeavenStacks;
+		char unknown8B8[0x4];
+
+		PlayerReimu(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerReimu) == 0x8BC);
+
+	class PlayerMarisa : public Player {
+	public:
+		char unknown890[0x2];
+		unsigned short orreriesTimer;
+		char unknown894[0x18];
+
+		PlayerMarisa(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerMarisa) == 0x8AC);
+
+	class PlayerSakuya : public Player {
+	public:
+		unsigned short worldTimer;
+		unsigned short psTimer;
+		char unknown894[0xC];
+
+		PlayerSakuya(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerSakuya) == 0x8A0);
+
+	class PlayerAlice : public Player {
+	public:
+		char unknown890[0x2];
+		unsigned short dollCount;
+		char unknown894[0x30];
+
+		PlayerAlice(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerAlice) == 0x8C4);
+
+	class PlayerPatchouli : public Player {
+	public:
+		unsigned short philStoneTimer;
+		char unknown892[0xE];
+		unsigned short dHardnessTimer;
+		char unknown8A2[0x6];
+
+		PlayerPatchouli(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerPatchouli) == 0x8A8);
+
+	class PlayerYoumu : public Player {
+	public:
+		char unknown890[0x2C];
+		void *unknownObject;
+		char unknown8C0[0x16];
+		unsigned short youmuCloneTimeLeft;
+		char unknown8D8[0x14];
+
+		PlayerYoumu(const PlayerInfo&);
+		~PlayerYoumu() override;
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerYoumu) == 0x8EC);
+
+	class PlayerRemilia : public Player {
+	public:
+		unsigned short millVampireTimer;
+		char unknown892[0x02];
+
+		PlayerRemilia(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerRemilia) == 0x894);
+
+	class PlayerYuyuko : public Player {
+	public:
+		char unknown890[0x10];
+		unsigned short resButterfliesUsed;
+		char unknown8A2[0xA];
+
+		PlayerYuyuko(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerYuyuko) == 0x8AC);
+
+	class PlayerYukari : public Player {
+	public:
+		char unknown890[0x44];
+
+		PlayerYukari(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerYukari) == 0x8D4);
+
+	class PlayerSuika : public Player {
+	public:
+		char unknown890[0x2];
+		unsigned short mppTimer;
+		char unknown894[0x4];
+
+		PlayerSuika(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerSuika) == 0x898);
+
+	class PlayerUdonge : public Player {
+	public:
+		char unknown890[0x8];
+		unsigned short urFieldActive;
+		unsigned short uvFieldActive;
+		char unknown89C[0x4];
+		unsigned short elixirUsed;
+		char unknown8A2[0x10];
+		unsigned short infraredMoonTimeLeft;
+		char unknown8B4[0x4];
+
+		PlayerUdonge(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerUdonge) == 0x8B8);
+
+	class PlayerAya : public Player {
+	public:
+		char unknown890[0x08];
+
+		PlayerAya(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerAya) == 0x898);
+
+	class PlayerKomachi : public Player {
+	public:
+		char unknown890[0x08];
+
+		PlayerKomachi(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerKomachi) == 0x898);
+
+	class PlayerIku : public Player {
+	public:
+		char unknown890[0x18];
+
+		PlayerIku(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerIku) == 0x8A8);
+
+	class PlayerTenshi : public Player {
+	public:
+		char unknown890[0x94];
+		unsigned short stateOfEnlightenmentTimeLeft;
+		char unknown926[0xA];
+
+		PlayerTenshi(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	}; // TODO There's something wrong with Tenshi
+	static_assert(sizeof(PlayerTenshi) == 0x930);
+
+	class PlayerSanae : public Player {
+	public:
+		char unknown890[0xC];
+		int kanakoTimer;
+		int suwakoTimeLeft;
+		char unknown8A4[0xC];
+
+		PlayerSanae(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerSanae) == 0x8B0);
+
+	class PlayerChirno : public Player {
+	public:
+		char unknown890[0x04];
+
+		PlayerChirno(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerChirno) == 0x894);
+
+	class PlayerMeirin : public Player {
+	public:
+		char unknown890[0x04];
+
+		PlayerMeirin(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerMeirin) == 0x894);
+
+	class PlayerUtsuho : public Player {
+	public:
+		char unknown890[0x18];
+
+		PlayerUtsuho(const PlayerInfo&);
+		~PlayerUtsuho() override;
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerUtsuho) == 0x8A8);
+
+	class PlayerSuwako : public Player {
+	public:
+		char unknown890[4];
+		int curseType;//0x894, enum {None=0, Red, Green, Blue}
+		int punishType;//0x898, enum {None=0, Crush, Block, Attack, Dash}
+		bool orbsSpawned;//0x89C
+		bool orbsFastSpin;//0x89D(unused)
+		char unknown89E[2];//align 2
+		int curseTimer;//0x8A0
+		int punishTimer;//0x8A4
+
+		PlayerSuwako(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerSuwako) == 0x8A8);
+
+	class PlayerNamazu : public Player {
+	public:
+		char unknown890[0x10];
+
+		PlayerNamazu(const PlayerInfo&);
+		DECL_PLAYER_VIRTUALS()
+	};
+	static_assert(sizeof(PlayerNamazu) == 0x8A0);
 }}
 
 #endif
