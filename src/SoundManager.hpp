@@ -43,7 +43,7 @@ namespace SokuLib
 		SFX_MENU_MOVE,               // 039 -> Menu move
 		SFX_MENU_CONFIRM,            // 040 -> Menu confirm
 		SFX_MENU_CANCEL,             // 041 -> Menu cancel
-		SFX_HIGH_JUMP,               // 043 -> High jump
+		SFX_HIGH_JUMP = 43,          // 043 -> High jump
 		SFX_KNOCK_OUT,               // 044 -> Knock out
 		SFX_CHARGE_ATTACK,           // 045 -> Charging
 		SFX_WEATHER_CRYSTAL_COLLECT2,// 046 -> Weather crystal collect
@@ -58,12 +58,12 @@ namespace SokuLib
 		SFX_CARD_DISCARDED,          // 058 -> Card discarded
 		SFX_TITLESCREEN_MOVE,        // 059 -> Title screen move
 		SFX_TITLESCREEN_CONFIRM = 61,// 061 -> Menu confirm
-		SFX_CATFISH_FALL,            // 070 -> Catfish fall
+		SFX_CATFISH_FALL = 70,       // 070 -> Catfish fall
 		SFX_CATFISH_LAND,            // 071 -> Catfish land
 		SFX_LHFF_CHARGE,             // 072 -> Left handed folding fan charge
 		SFX_TIME_STOPPED,            // 073 -> Time stopped
 		SFX_UNUSED4,                 // 074 -> bzzzzz
-		SFX_QUIET_RAIN,              // 100 -> Quiet rain
+		SFX_QUIET_RAIN = 100,        // 100 -> Quiet rain
 		SFX_LOUD_RAIN,               // 101 -> Loud Rain
 		SFX_WIND,                    // 102 -> Wind
 		SFX_HEAVY_WIND,              // 103 -> More wind
