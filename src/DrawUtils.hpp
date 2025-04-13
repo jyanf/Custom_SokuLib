@@ -147,8 +147,10 @@ namespace DrawUtils
 
 	class RectangularRenderingElement : public RenderingElement {
 	private:
+		bool _hasCenter = false;
 		float _rotation = 0;
 		Vector2u _size = {0, 0};
+		Vector2i _center = {0, 0};
 		const Camera *_camera = nullptr;
 		Vector2<bool> _mirroring = {false, false};
 
@@ -172,6 +174,7 @@ namespace DrawUtils
 		void setRect(const FloatRect &rect);
 		void rawSetRect(const Rect<Vector2f> &rect);
 		void setRotation(float angle);
+		void setRotation(float angle, Vector2i center);
 		void setMirroring(bool x, bool y);
 		void setCamera(const Camera *camera);
 		Vector2<bool> getMirroring() const;
