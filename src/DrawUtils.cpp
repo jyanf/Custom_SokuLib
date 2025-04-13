@@ -314,7 +314,7 @@ namespace DrawUtils
 		RenderingElement::setPosition(newPos);
 
 		auto size = this->_getRealSize();
-		auto center = this->_position + size * 0.5;
+		auto center = this->_position + (this->_hasCenter ? this->_center : (size * 0.5).to<int>());
 		auto topLeft = this->_position.rotate(this->_rotation, center);
 		auto topRight = (this->_position + Vector2<unsigned>{size.x, 0}).rotate(this->_rotation, center);
 		auto bottomLeft = (this->_position + Vector2<unsigned>{0, size.y}).rotate(this->_rotation, center);
@@ -371,6 +371,15 @@ namespace DrawUtils
 	void RectangularRenderingElement::setRotation(float angle)
 	{
 		this->_rotation = angle;
+		this->_hasCenter = false;
+		this->setPosition(this->_position);
+	}
+
+	void RectangularRenderingElement::setRotation(float angle, Vector2i center)
+	{
+		this->_rotation = angle;
+		this->_center = center;
+		this->_hasCenter = true;
 		this->setPosition(this->_position);
 	}
 
@@ -493,6 +502,7 @@ namespace DrawUtils
 			vertices[3].z += 0.5;
 		}
 		this->texture.activate();
+		SokuLib::pd3dDev->SetFVF(D3DFVF_DIFFUSE | D3DFVF_XYZRHW | D3DFVF_TEX1);
 		SokuLib::pd3dDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertices, sizeof(*vertices));
 	}
 
