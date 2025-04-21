@@ -66,7 +66,7 @@ namespace SokuLib
 		char unknown7DC[0xC];
 		String bubbleText, unknown804, unknown820;
 		// 0x83C
-		char unknown83C[0x38];
+		char unknown83C[0x3C];
 
 		virtual void VUnknown00(); // reset state (not destructor)
 		virtual void VUnknown04(); // clear (maybe destructor)
