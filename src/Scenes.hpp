@@ -149,7 +149,9 @@ namespace SokuLib
 		//0x14 Right Keys
 		KeymapManager *rightKeys;
 
-		char offset_0x018[0x110];
+		char offset_0x018[0x80];
+		Vector<Character> characterIndices;
+		char offset_0x0A8[0x80];
 
 		// 0x128
 		InputHandler leftCharInput;
