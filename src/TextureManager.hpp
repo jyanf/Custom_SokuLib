@@ -21,7 +21,7 @@ namespace SokuLib
 		int *createTextTexture(int *ret, LPCSTR str, struct SWRFont &font, int width, int height, int *realWidth, int *realHeight);
 		void *remove(int id);
 		void setTexture(int id, int stage);
-		void getSize(int *w, int *h);
+		void getSize(int i, int *w, int *h);
 		IDirect3DTexture9 **toIDirect3DTexture9Array();
 		IDirect3DTexture9 **allocate(int *handle);
 		void deallocate(int handle);

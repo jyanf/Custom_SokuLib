@@ -56,9 +56,9 @@ namespace SokuLib
 		(this->*union_cast<void (__thiscall TextureManager::*)(int, int)>(ADDR_TEXTURE_MANAGER_SET_TEXTURE))(id, stage);
 	}
 
-	void TextureManager::getSize(int *w, int *h)
+	void TextureManager::getSize(int t, int *w, int *h)
 	{
-		(this->*union_cast<void (__thiscall TextureManager::*)(int *, int *)>(ADDR_TEXTURE_MANAGER_GET_SIZE))(w, h);
+		(this->*union_cast<void (__thiscall TextureManager::*)(int, int *, int *)>(ADDR_TEXTURE_MANAGER_GET_SIZE))(t, w, h);
 	}
 
 	IDirect3DTexture9 **TextureManager::toIDirect3DTexture9Array()
