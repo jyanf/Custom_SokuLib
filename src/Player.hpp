@@ -519,7 +519,9 @@ namespace v2 {
 
 	class PlayerUtsuho : public Player {
 	public:
-		char unknown890[0x18];
+		bool capeDisabled;
+		int capeTexture;
+		char unknown898[0x10];
 
 		PlayerUtsuho(const PlayerInfo&);
 		~PlayerUtsuho() override;

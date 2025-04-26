@@ -202,70 +202,132 @@ namespace v2 {
 	IMPL_PLAYER_VIRTUALS(PlayerSuwako, ((void** const)_vtable_info<v2::PlayerSuwako>::baseAddr))
 	IMPL_PLAYER_VIRTUALS(PlayerNamazu, ((void** const)_vtable_info<v2::PlayerNamazu>::baseAddr))
 
-	PlayerReimu::PlayerReimu(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Reimu(this); }
-	PlayerMarisa::PlayerMarisa(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Marisa(this); }
-	PlayerSakuya::PlayerSakuya(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Sakuya(this); }
-	PlayerAlice::PlayerAlice(const PlayerInfo& info)
-		: Player(info) { unknown138 = -6; objectList = new GameObjectList_Alice(this); }
-	PlayerPatchouli::PlayerPatchouli(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Patchouli(this); }
-	PlayerRemilia::PlayerRemilia(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Remilia(this); }
-	PlayerYuyuko::PlayerYuyuko(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Yuyuko(this); }
-	PlayerYukari::PlayerYukari(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Yukari(this); }
-	PlayerSuika::PlayerSuika(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Suika(this); }
-	PlayerUdonge::PlayerUdonge(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Udonge(this); }
-	PlayerAya::PlayerAya(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Aya(this); }
-	PlayerKomachi::PlayerKomachi(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Komachi(this); }
-	PlayerIku::PlayerIku(const PlayerInfo& info)
-		: Player(info) { unknown138 = -6; objectList = new GameObjectList_Iku(this); }
-	PlayerTenshi::PlayerTenshi(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Tenshi(this); }
-	PlayerSanae::PlayerSanae(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Sanae(this); }
-	PlayerChirno::PlayerChirno(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Chirno(this); }
-	PlayerMeirin::PlayerMeirin(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Meirin(this); }
-	PlayerSuwako::PlayerSuwako(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Suwako(this); }
-	PlayerNamazu::PlayerNamazu(const PlayerInfo& info)
-		: Player(info) { objectList = new GameObjectList_Namazu(this); }
-
-	PlayerYoumu::PlayerYoumu(const PlayerInfo& info) : Player(info) {
-		memset(&unknown890[0xd0], 0, 16); // [0x8c0-0x8d0] = 0
-		objectList = new GameObjectList_Youmu(this);
+	PlayerReimu::PlayerReimu(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Reimu(this);
+	}
+	PlayerMarisa::PlayerMarisa(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Marisa(this);
+	}
+	PlayerSakuya::PlayerSakuya(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Sakuya(this);
+	}
+	PlayerAlice::PlayerAlice(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->unknown138 = -6; objectList = new GameObjectList_Alice(this);
+	}
+	PlayerPatchouli::PlayerPatchouli(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Patchouli(this);
+	}
+	PlayerRemilia::PlayerRemilia(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Remilia(this);
+	}
+	PlayerYuyuko::PlayerYuyuko(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Yuyuko(this);
+	}
+	PlayerYukari::PlayerYukari(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Yukari(this);
+	}
+	PlayerSuika::PlayerSuika(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Suika(this);
+	}
+	PlayerUdonge::PlayerUdonge(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Udonge(this);
+	}
+	PlayerAya::PlayerAya(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Aya(this);
+	}
+	PlayerKomachi::PlayerKomachi(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Komachi(this);
+	}
+	PlayerIku::PlayerIku(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->unknown138 = -6; objectList = new GameObjectList_Iku(this);
+	}
+	PlayerTenshi::PlayerTenshi(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Tenshi(this);
+	}
+	PlayerSanae::PlayerSanae(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Sanae(this);
+	}
+	PlayerChirno::PlayerChirno(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Chirno(this);
+	}
+	PlayerMeirin::PlayerMeirin(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Meirin(this);
+	}
+	PlayerSuwako::PlayerSuwako(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Suwako(this);
+	}
+	PlayerNamazu::PlayerNamazu(const PlayerInfo& info) :
+		Player(info)
+	{
+		this->objectList = new GameObjectList_Namazu(this);
 	}
 
-	PlayerUtsuho::PlayerUtsuho(const PlayerInfo& info) : Player(info) {
-		int texId = 0;
-		((int*)this->unknown890)[1] = *SokuLib::textureMgr.loadTexture(&texId, (const char*)0x85f5e4, 0, 0);
-		this->unknown890[0] = 0;
-		char* const buffer = *(char**)0x8a0d08;
+	PlayerYoumu::PlayerYoumu(const PlayerInfo& info) :
+		Player(info)
+	{
+		memset(this->unknown8C0, 0, 0x10); // [0x8c0-0x8d0] = 0
+		this->objectList = new GameObjectList_Youmu(this);
+	}
+	PlayerUtsuho::PlayerUtsuho(const PlayerInfo& info) :
+		Player(info)
+	{
+		char buffer[MAX_PATH];
+
+		// 0x85F5E4 -> data/character/utsuho/backA000.bmp
+		SokuLib::textureMgr.loadTexture(&this->capeTexture, (const char *)0x85F5E4, nullptr, nullptr);
 		GetCurrentDirectoryA(MAX_PATH, buffer);
-		pathAppendA(buffer, (char*)0x858408); // "configex123.ini" // TODO better handling of shlwapi
-		if (GetPrivateProfileIntA((char*)0x85a2e4, (char*)0x85a2e8, -1, buffer) == 1) { // "etc", "limit"
-			this->unknown890[0] = 1;
-		}
-		objectList = new GameObjectList_Utsuho(this);
+		pathAppendA(buffer, (char *)0x858408); // "configex123.ini" // TODO better handling of shlwapi
+		if (GetPrivateProfileIntA((char *)0x85A2E4, (char *)0x85A2E8, -1, buffer) == 1) // "etc", "limit"
+			this->capeDisabled = true;
+		else
+			this->capeDisabled = false;
+		this->objectList = new GameObjectList_Utsuho(this);
 	}
 
-	PlayerYoumu::~PlayerYoumu() {
+	PlayerYoumu::~PlayerYoumu()
+	{
 		// unknown object destructor
-		reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(&unknown890[0x2c]);
+		reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(this->unknownObject);
 	}
-
-	PlayerUtsuho::~PlayerUtsuho() {
-		SokuLib::textureMgr.remove(((int*)this->unknown890)[1]); // remove texture in +0x894
+	PlayerUtsuho::~PlayerUtsuho()
+	{
+		SokuLib::textureMgr.remove(this->capeTexture); // remove texture in +0x894
 	}
 }
 }
