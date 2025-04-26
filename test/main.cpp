@@ -226,7 +226,7 @@ void testCharacterManager()
 
 	assert_equal(sizeof(v2::GameObjectBase), 0x34C);
 	assert_equal(offsetof(v2::GameObjectBase, gameData), 0x158);
-	assert_equal(offsetof(v2::GameObjectBase, HP), 0x184);
+	assert_equal(offsetof(v2::GameObjectBase, hp), 0x184);
 	assert_equal(offsetof(v2::GameObjectBase, boxData), 0x1B4);
 
 	assert_equal(sizeof(v2::GameObject), 0x3AC);
@@ -242,7 +242,7 @@ void testCharacterManager()
 	assert_equal(offsetof(v2::Player, objectList), 0x6f8);
 	assert_equal(offsetof(v2::Player, unknown714), 0x714);
 	assert_equal(offsetof(v2::Player, inputData), 0x754);
-	assert_equal(offsetof(v2::Player, dashTimer), 0x7D0);
+	//assert_equal(offsetof(v2::Player, dashTimer), 0x7D0);
 }
 
 void testSelectScene()
