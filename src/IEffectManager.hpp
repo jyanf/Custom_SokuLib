@@ -69,6 +69,8 @@ namespace v2 {
 		virtual ~SystemEffectManager() = default;
 		SystemEffectObject* createEffect(const char* textureName, short actionId, float x, float y); // 0x460560
 	}; // 0x60
+
+	extern EffectManager_Effect *&effectEffectManager;
 }
 }
 

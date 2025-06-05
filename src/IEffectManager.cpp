@@ -47,4 +47,6 @@ namespace SokuLib {
 	IMPL_EFFECTMANAGER_VIRTUALS(v2::EffectManager_InfoEffect, ((void** const)SokuLib::ADDR_VTBL_FXMANAGER_INFOFX))
 	IMPL_EFFECTMANAGER_VIRTUALS(v2::EffectManager_Select, ((void** const)SokuLib::ADDR_VTBL_FXMANAGER_SELECT))
 	IMPL_EFFECTMANAGER_VIRTUALS(v2::EffectManager_Weather, ((void** const)SokuLib::ADDR_VTBL_FXMANAGER_WEATHER))
+
+	v2::EffectManager_Effect *&v2::effectEffectManager = *(v2::EffectManager_Effect **)0x8985F0;
 }
