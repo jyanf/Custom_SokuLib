@@ -160,7 +160,7 @@ namespace SokuLib {
 	void CDesign::setColor2(int c[4])               { (this->*union_cast<void(IColor::*)(int[])>(_vtable_design[2]))(c); }
 	void CDesign::setColor3(int c)                  { (this->*union_cast<void(IColor::*)(int)>(_vtable_design[3]))(c); }
 	void CDesign::loadResource(const char* a1)      { (this->*union_cast<void(CDesign::*)(const char*)>(_vtable_design[4]))(a1); }
-	void CDesign::clear()                           { (this->*union_cast<void(CDesign::*)()>(_vtable_design[5]))(); }
+	void CDesign::clear()                           { (this->*union_cast<void(CDesign::*)()>(_vtable_design[5]))(); objectMap.clear(); }
 	void CDesign::render(float x, float y, int id)  { (this->*union_cast<void(CDesign::*)(float, float, int)>(_vtable_design[6]))(x, y, id); }
 	void CDesign::render2(float x, float y)         { (this->*union_cast<void(CDesign::*)(float, float)>(_vtable_design[7]))(x, y); }
 	void CDesign::render3(int id)                   { (this->*union_cast<void(CDesign::*)(int)>(_vtable_design[8]))(id); }
