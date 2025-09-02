@@ -553,6 +553,8 @@ namespace v2 {
 		DECL_PLAYER_VIRTUALS()
 	};
 	static_assert(sizeof(PlayerNamazu) == 0x8A0);
+
+	extern unsigned char &firstPlayerRendered;
 }}
 
 #endif

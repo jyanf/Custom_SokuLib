@@ -323,11 +323,13 @@ namespace v2 {
 	PlayerYoumu::~PlayerYoumu()
 	{
 		// unknown object destructor
-		reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(this->unknownObject);
+		reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(&this->unknownObject);
 	}
 	PlayerUtsuho::~PlayerUtsuho()
 	{
 		SokuLib::textureMgr.remove(this->capeTexture); // remove texture in +0x894
 	}
+
+	unsigned char &firstPlayerRendered = *reinterpret_cast<unsigned char *>(0x89AAF4);
 }
 }

@@ -51,6 +51,7 @@ namespace SokuLib::DLL
 		UINT (__stdcall *GetConsoleCP)(void);
 		BOOL (__stdcall *SetStdHandle)(DWORD nStdHandle, HANDLE hHandle);
 		int (__stdcall *LCMapStringW)(LCID Locale, DWORD dwMapFlags, LPCWSTR lpSrcStr, int cchSrc, LPWSTR lpDestStr, int cchDest);
+		int (__stdcall *LCMapStringA)(LCID Locale, DWORD dwMapFlags, LPCSTR lpSrcStr, int cchSrc, LPSTR lpDestStr, int cchDest);
 		int (__stdcall *MultiByteToWideChar)(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
 		LPVOID (__stdcall *VirtualAlloc)(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 		DWORD (__stdcall *GetCurrentProcessId)(void);
