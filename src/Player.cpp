@@ -329,5 +329,7 @@ namespace v2 {
 	{
 		SokuLib::textureMgr.remove(this->capeTexture); // remove texture in +0x894
 	}
+
+	unsigned char &firstPlayerRendered = *reinterpret_cast<unsigned char *>(0x89AAF4);
 }
 }
