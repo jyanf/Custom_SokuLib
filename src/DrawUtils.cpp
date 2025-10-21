@@ -288,6 +288,13 @@ namespace DrawUtils
 		return true;
 	}
 
+	LPDIRECT3DTEXTURE9 *Texture::getDXTexture()
+	{
+		if (!this->_loaded)
+			return nullptr;
+		return SokuLib::textureMgr.Get(this->_handle);
+	}
+
 	Vector2<unsigned> RectangularRenderingElement::getSize() const
 	{
 		return this->_size;

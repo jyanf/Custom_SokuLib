@@ -125,6 +125,7 @@ namespace v2 {
 			((TextureManager *)0x89F9F8)->removeSound(this->gameData.soundTable[i]);
 		SokuLib::Delete(this->gameData.soundTable);
 		// TODO: Handle virtual destructors in SokuLib::Delete
+		// TODO: Pretty sure SokuLib::Delete works on virtual destructors, need to check out in a simple example
 		delete this->objectList; // has virtual destructor so we use delete
 		SokuLib::Delete(this->textures);
 		SokuLib::Delete(this->gameData.patternMap);

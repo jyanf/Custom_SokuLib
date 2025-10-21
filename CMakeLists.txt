@@ -130,6 +130,8 @@ add_library(
 	src/InputCombination.hpp
 	src/Menus/PauseMenu.cpp
 	src/Menus/PauseMenu.hpp
+	src/Reader.cpp
+	src/Reader.hpp
 )
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)

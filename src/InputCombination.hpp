@@ -5,14 +5,17 @@
 #ifndef SWRSTOYS_KEYCOMBINATION_HPP
 #define SWRSTOYS_KEYCOMBINATION_HPP
 
-struct MovementCombination {
-	/* 0x1        */ bool _66 : 1;
-	/* 0x2        */ bool _44 : 1;
-	/* 0x4        */ bool _29 : 1;
-	/* 0x8        */ bool _27 : 1;
-	/* 0x10       */ bool _28 : 1;
-	/* 0x20       */ bool _dd : 1;
-	/*            */ short padding;
+union MovementCombination {
+	struct {
+		/* 0x1        */ bool _66: 1;
+		/* 0x2        */ bool _44: 1;
+		/* 0x4        */ bool _29: 1;
+		/* 0x8        */ bool _27: 1;
+		/* 0x10       */ bool _28: 1;
+		/* 0x20       */ bool _dd: 1;
+		/*            */ short padding;
+	};
+	unsigned value;
 };
 
 union CommandCombination {
