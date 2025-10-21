@@ -5,19 +5,23 @@
 #ifndef SOKULIB_IFILEREADER_HPP
 #define SOKULIB_IFILEREADER_HPP
 
-#include <Windows.h>
+
+#include <windows.h>
+#include "FrameData.hpp"
+#include "Map.hpp"
+#include "Deque.hpp"
 
 namespace SokuLib
 {
 	struct IFileReader {
-		HANDLE fp;
+		HANDLE fp = nullptr;
 
 		inline void close() {
-			if (fp) CloseHandle(fp);
-			fp = 0;
+			if (this->fp != nullptr) CloseHandle(this->fp);
+			this->fp = nullptr;
 		}
 
-		inline bool isOpen() { return fp != 0; }
+		inline bool isOpen() { return this->fp != nullptr; }
 
 		virtual ~IFileReader();
 		virtual bool Read(LPVOID lpBuffer, DWORD nNumberOfBytesToRead) = 0;
@@ -31,8 +35,8 @@ namespace SokuLib
 
 		inline void open(const char* filename) {
 			this->close();
-			fp = CreateFileA(filename, FILE_READ_DATA, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-			if (fp == INVALID_HANDLE_VALUE) fp = 0;
+			this->fp = CreateFileA(filename, FILE_READ_DATA, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+			if (this->fp == INVALID_HANDLE_VALUE) this->fp = nullptr;
 		}
 
 		virtual bool Read(LPVOID lpBuffer, DWORD nNumberOfBytesToRead) override;
@@ -62,6 +66,9 @@ namespace SokuLib
 		virtual LONG Seek(LONG lDistanceToMove, DWORD dwMoveMethod) override;
 		virtual DWORD GetLength() override;
 	};
+
+	extern void (*readPattern)(const char *characterName, unsigned paletteId, Map<int, v2::CharacterSequenceData*> *patternMap, Deque<v2::CharacterSequenceData> *patternData, Vector<int> *textureMap);
 }
+
 
 #endif //SOKULIB_IFILEREADER_HPP
