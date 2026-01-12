@@ -114,14 +114,15 @@ namespace v2 {
 		float getGroundHeight() const; // 4397f0
 		int isOnGround() const; //439850
 		void setHitBoxData(int left, int top, int right, int bottom, short rotation, short rotAnchorX, short rotAnchorY); // 4b0e40;
+		void setClipMask(short actionId); //0x466670; only support 1 bit alpha
 		void damageOpponent(int damage, int rate, short hitCount, bool applyModifiers); // 0x4649b0: :Rate is *1000 (850 is 85% rate)
 		GameObjectBase* createEffect(int action, float x, float y, int dir, char layer); // 438ce0
 	}; // 0x34C
 
 	struct TailObject {
 		GameObjectBase* parent;
-		int paramB, paramC, unknown0C;
-		float paramA; int paramD;
+		int length, subdivide, unknown0C;
+		float width; int mode;
 		Vector2f texCoord;
 		int texId = 0;
 		char unknown24[4]; // bool[2]?
@@ -133,10 +134,10 @@ namespace v2 {
 		// offset 0x50
 		DxVertex* vertexBuffer = nullptr;
 
-		void initialize(GameObjectBase* parent, FrameData* frameData, float paramA, int paramB, int paramC, int paramD);
+		void initialize(GameObjectBase* parent, FrameData* frameData, float width, int length, int subdivide, int mode);
 		void update();
 		void render();
-		inline int vertexBufferSize() const { return paramB * paramC * 2 + 2; }
+		inline int vertexBufferSize() const { return length * subdivide * 2 + 2; }
 		inline ~TailObject() { if (vertexBuffer) SokuLib::DeleteFct(vertexBuffer); vertexBuffer = 0; }
 	};
 
@@ -150,7 +151,7 @@ namespace v2 {
 		char unknown359[3]; // align 3?
 		// offset 0x35C: an object starts here?
 		float* customData = nullptr;
-		short unknown360 = 0; // compared togheter with enemy->TimeStop
+		short ignoreOwnerTimestop = 0; // compared togheter with enemy->TimeStop; 1 means object won't be stopped by timestop from owner
 		short unknown362 = 0;
 		Player* parentPlayer;
 		GameObject* parentObject;
@@ -175,11 +176,11 @@ namespace v2 {
 		virtual GameObject* createObject(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 		virtual GameObject* createChild(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 
-		void trackOpponent(float min, float max, float yOffset); // 48CCA0
+		void trackOpponent(float turnBias, float turnMax, float yOffset); // 48CCA0
 		bool checkGrazed(int density);
 		bool checkProjectileHit(int density);
 		bool checkTurnIntoCrystals(bool onlyAirHit, int bigCrystalCount, int smallCrystalCount, float offsetX = 0, float offsetY = 0); // 48CE90
-		void setTail(short actionId, float paramA, int paramB, int paramC, int paramD); // unsure
+		void setTail(short actionId, float width, int length, int subdivide, int mode); // subdivide unsure
 	}; // 0x3AC
 
 #define DECL_GAMEOBJECT_VIRTUALS() \
