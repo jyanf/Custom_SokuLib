@@ -53,12 +53,12 @@ namespace v2 {
 		short hitStop = 0;
 		float counterHitDmgMultiplier = 1;
 		float unknown19C; // = .0
-		char unknown1A0 = 0;
+		char reflectCounter = 0; // used by youmu reflection shield
 		char unknown1A1 = 0;
 		short forcedCounterHits = 0; // = 0
 		float unknown1A4 = 0; // = .0
 		float unknown1A8 = 0; // = .0
-		char unknown1AC = 1;
+		bool allowEntity = 1; // entity collision will be ignored if 0
 		char unknown1AD[3]; // align 0x3?// offset 0x1b0
 		struct CustomHitBox {
 			Box box;
