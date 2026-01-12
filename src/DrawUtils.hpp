@@ -94,6 +94,7 @@ namespace DrawUtils
 		bool loadFromGame(const char *path);
 		bool loadFromResource(HMODULE srcModule, LPCTSTR srcResource);
 		bool createFromText(const char *str, SWRFont &font, Vector2u size, Vector2i *realSize = nullptr);
+		LPDIRECT3DTEXTURE9 *getDXTexture();
 	};
 
 	class RenderingElement {

@@ -149,13 +149,18 @@ namespace SokuLib
 		}
 
 		iterator erase(iterator where, iterator finish) {
-			if (where == begin() && finish == end()) clear();
-			else if(where != finish) {
-				if (where._ptr > finish._ptr || where._ptr < this->m_first || finish._ptr >= this->m_last) {
-					std::runtime_error("SokuLib: Vector<T> erase outside bounds.");
-				}
+			if (finish == end()) {
+				if (where != begin()) {
+					std::destroy_n(where, finish._ptr - where._ptr);
+					this->m_last = where._ptr;
+				} else
+					this->clear();
+			} else if (where != finish) {
+				if (where._ptr > finish._ptr || where._ptr < this->m_first || finish._ptr > this->m_last)
+					throw std::runtime_error("SokuLib: Vector<T> erase outside bounds.");
 
 				const iterator newlast = std::move(finish, end(), where);
+
 				std::destroy_n(newlast, end() - newlast);
 				this->m_last = newlast._ptr;
 			}
