@@ -77,16 +77,20 @@ namespace v2 {
 		(this->*union_cast<void (GameObjectBase::*)(int, int, int, int, short, short, short)>(0x4B0E40))(left, top, right, bottom, rotation, rotAnchorX, rotAnchorY);
 	}
 
+	void GameObjectBase::setClipMask(short actionId) {
+		(this->*union_cast<void(GameObjectBase::*)(short)>(0x466670))(actionId);
+	}
+
 	void GameObjectBase::damageOpponent(int damage, int rate, short hitCount, bool applyModifiers) {
 		(this->*union_cast<void(GameObjectBase::*)(int, int, short, bool)>(0x4649B0))(damage, rate, hitCount, applyModifiers);
 	}
 
-	void GameObject::trackOpponent(float min, float max, float yOffset) {
-		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(min, max, yOffset);
+	void GameObject::trackOpponent(float bias, float max, float yOffset) {
+		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(bias, max, yOffset);
 	}
 
-	void GameObject::setTail(short actionId, float paramA, int paramB, int paramC, int paramD) {
-		return (this->*union_cast<void (GameObject::*)(short, float, int, int, int)>(0x4b0f50))(actionId, paramA, paramB, paramC, paramD);
+	void GameObject::setTail(short actionId, float width, int length, int subdivide, int mode) {
+		return (this->*union_cast<void (GameObject::*)(short, float, int, int, int)>(0x4b0f50))(actionId, width, length, subdivide, mode);
 	}
 
 	GameObject::~GameObject() {

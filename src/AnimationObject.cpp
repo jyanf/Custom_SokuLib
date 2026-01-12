@@ -45,7 +45,7 @@ namespace SokuLib {
 	const int _vtable_info<v2::WeatherEffectObject>::baseAddr   = ADDR_VTBL_FX_WEATHER;
 
 namespace v2 {
-	AnimationObject::~AnimationObject() { if (unknown154) SokuLib::Delete(unknown154); unknown154 = 0; }
+	AnimationObject::~AnimationObject() { if (clipMask) SokuLib::Delete(clipMask); clipMask = nullptr; }
 
 	bool AnimationObject::advanceFrame() { return (this->*union_cast<bool (AnimationObject::*)()>(0x438c60))(); }
 	void AnimationObject::setActionSequence(short action, short sequence) { return (this->*union_cast<void (AnimationObject::*)(short, short)>(0x438cc0))(action, sequence); }
