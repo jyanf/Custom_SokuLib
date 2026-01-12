@@ -32,7 +32,7 @@ namespace v2 {
 		// offset 0x130
 		Vector<int>* textures;
 		bool isGui = false;
-		bool isActive = false; // shadowEnabled
+		bool isActive = false; // actually controls stage fx (like shadow)
 		// align 0x2
 		float shadowOffset; // displacement in Y (Player objects sets this to -6)
 
@@ -51,8 +51,8 @@ namespace v2 {
 		// offset 0x150
 		v2::FrameData* frameData;
 
-		class SpriteClip : SpriteEx { // same vtable but with additional structure
-			Vector2f position, anchor, scale;
+		class SpriteClip : public SpriteEx { // same vtable but with additional structure
+			Vector2f position, center, scale;
 			float rotation;
 			char direction;// multiplied with rotation and scale.x
 			char unknown105[3]; //align?
