@@ -112,7 +112,7 @@ namespace v2 {
 
 		void resetForces(); // 4636b0
 		float getGroundHeight() const; // 4397f0
-		int isOnGround() const; //439850
+		bool isOnGround() const; //439850
 		void setHitBoxData(int left, int top, int right, int bottom, short rotation, short rotAnchorX, short rotAnchorY); // 4b0e40;
 		void setClipMask(short actionId); //0x466670; only support 1 bit alpha
 		void damageOpponent(int damage, int rate, short hitCount, bool applyModifiers); // 0x4649b0: :Rate is *1000 (850 is 85% rate)

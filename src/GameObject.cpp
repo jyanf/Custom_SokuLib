@@ -59,7 +59,7 @@ namespace v2 {
 
 	void GameObjectBase::resetForces() { return (this->*union_cast<void (GameObjectBase::*)()>(0x4636b0))(); }
 	float GameObjectBase::getGroundHeight() const { return (this->*union_cast<float (GameObjectBase::*)() const>(0x4397f0))(); }
-	int GameObjectBase::isOnGround() const { return (this->*union_cast<int (GameObjectBase::*)() const>(0x439850))(); }
+	bool GameObjectBase::isOnGround() const { return (this->*union_cast<bool (GameObjectBase::*)() const>(0x439850))(); }
 	GameObjectBase* GameObjectBase::createEffect(int action, float x, float y, int dir, char layer) { return (this->*union_cast<GameObjectBase* (GameObjectBase::*)(int, float, float, int, char)>(0x438ce0))(action, x, y, dir, layer); }
 
 	void GameObjectBase::setActionSequence(short action, short sequence) { return (this->*union_cast<void (GameObjectBase::*)(short, short)>(0x464950))(action, sequence); }
