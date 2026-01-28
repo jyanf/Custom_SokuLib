@@ -20,13 +20,11 @@ namespace SokuLib
 		char unknown[0x28];
 		SOCKET socket;
 		char offset_0x2C[0xC];
-		// �T�[�o�A�h���X
 		// in_addr
 		in_addr g_ptoAddr;
 		char offset_0x3C[0x84];
 		sockaddr_in opponent;
 		char offset_0xD0[0x38];
-		// �s�A���
 		// vector<SWRClientInfo> ?
 		// 0x108
 		Vector<struct ClientInfo> g_psvClients;
@@ -97,7 +95,6 @@ namespace SokuLib
 		Sprite p1ProfileNameSprite;
 		Sprite p2ProfileNameSprite;
 		char offset_0x3AC[0x10];
-		// UDP�l�b�g���[�N�I�u�W�F�N�g
 		// CNetworkBase, 0x3BC
 		NetworkBase netUdp;
 	};

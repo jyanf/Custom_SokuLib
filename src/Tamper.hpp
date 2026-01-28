@@ -8,10 +8,11 @@
 
 #include <windows.h>
 #include <cassert>
+#include <vector>
+#include "UnionCast.hpp"
 
 namespace SokuLib
 {
-	// DWORD��������
 	template<typename T, typename T2>
 	inline T2 TamperDword(T2 *baseAddr, T target) {
 		auto old = *reinterpret_cast<PDWORD>(baseAddr);
@@ -20,7 +21,6 @@ namespace SokuLib
 		return SokuLib::union_cast<T2>(old);
 	}
 
-	// DWORD��������
 	template<typename T>
 	inline T TamperDword(DWORD addr, T target) {
 		auto old = *reinterpret_cast<PDWORD>(addr);
@@ -29,7 +29,6 @@ namespace SokuLib
 		return SokuLib::union_cast<T>(old);
 	}
 
-	// DWORD���Z
 	inline DWORD TamperDwordAdd(DWORD addr, DWORD delta) {
 		DWORD old = *reinterpret_cast<PDWORD>(addr);
 
@@ -37,7 +36,6 @@ namespace SokuLib
 		return old;
 	}
 
-	// NEAR JMP�I�y�����h��������
 	template<typename T>
 	inline T TamperNearJmpOpr(DWORD addr, T targetFct) {
 		auto target = SokuLib::union_cast<DWORD>(targetFct);
@@ -46,15 +44,13 @@ namespace SokuLib
 		*reinterpret_cast<PDWORD>(addr + 1) = target - (addr + 5);
 		return SokuLib::union_cast<T>(old);
 	}
-
-	// NEAR JMP��������
+	
 	template<typename T>
 	inline T TamperNearJmp(DWORD addr, T target) {
 		*reinterpret_cast<PBYTE>(addr + 0) = 0xE9;
 		return TamperNearJmpOpr(addr, target);
 	}
 
-	// NEAR CALL��������
 	template<typename T>
 	inline T TamperNearCall(DWORD addr, T target) {
 		*reinterpret_cast<PBYTE>(addr + 0) = 0xE8;

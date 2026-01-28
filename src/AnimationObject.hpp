@@ -32,9 +32,9 @@ namespace v2 {
 		// offset 0x130
 		Vector<int>* textures;
 		bool isGui = false;
-		bool isActive = false;
+		bool isActive = false; // actually controls stage fx (like shadow)
 		// align 0x2
-		float unknown138; // displacement in Y (Player objects sets this to -6)
+		float shadowOffset; // displacement in Y (Player objects sets this to -6)
 
 		// offset 0x13C
 		struct FrameState {
@@ -50,7 +50,13 @@ namespace v2 {
 		} frameState;
 		// offset 0x150
 		v2::FrameData* frameData;
-		SpriteEx* unknown154 = nullptr;
+
+		class SpriteClip : public SpriteEx { // same vtable but with additional structure
+			Vector2f position, center, scale;
+			float rotation;
+			char direction;// multiplied with rotation and scale.x
+			char unknown105[3]; //align?
+		} *clipMask = nullptr; // mask out the sprite by 1 bit alpha of clip sprite, used by sprites that'll "sink" into ground
 
 		inline AnimationObject() = default;
 		virtual ~AnimationObject(); // 0x00

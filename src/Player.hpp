@@ -50,7 +50,8 @@ namespace v2 {
 
 		// offset 0x498
 		short redHP;
-		char groundDashCount, airDashCount, unknown49C, unknown49D; // = 0
+		char groundDashCount, airDashCount, unknown49C; // = 0
+		bool guardSucceed; // = 0; indicates that guarding move has successfully blocked
 		short currentSpirit, maxSpirit; // = 100
 		short spiritRegenDelay, timeWithBrokenOrb, spellStopCounter, timeStop, unknown4AA; // = 0
 		char unknown4AC;
@@ -58,10 +59,10 @@ namespace v2 {
 		char unknown4AE[2]; // align 2?
 		float comboRate; // = 1.0
 		short comboCount, comboDamage, comboLimit, untech;
-		short unknown4BC, realLimit; // = 0
-		short unknown4C0, unknown4C2; // = 0
+		short poiseTimer, realLimit; // = 0
+		short comboTimer, unknown4C2; // = 0
 		char unknown4C4, unknown4C5; // 48b000: +0x4c4 = 0 align 1?
-		short unknown4C6; // = 0
+		short unknown4C6; // = 0; 
 		int skillCancelCount; // = 0
 		char unknown4CC, hasSpotlight; // = 0
 		short spotlightStrength; // = 0
@@ -78,8 +79,8 @@ namespace v2 {
 		// 0x530: = {1,1,1,1, 0,1,1,1, 0,0,0,1};
 		float attackPower;
 		float defensePower;
-		float unknown538;
-		float unknown53C;
+		float poiseDmgMultiplier; // Affects poise damage taken from attack; 0 means super armor
+		float limitMultiplier; // used by Sakuya's time stop
 		float bonusProration;
 		float spellDmgMultiplier;
 		float specialDmgMultiplier;
@@ -96,7 +97,7 @@ namespace v2 {
 		// 0x56C: = {0,0,0,0, 0,1,1,0, 0,0,0,0, 0,?,?,?};
 		bool canGrazeMelee, crushOnWB, skillsMax, unknown56F;
 		bool unknown570, lockedInStageX, lockedInStageY; unsigned char score;
-		unsigned char roundsWins, unknown575, unknown576, kdAnimationFinished, unknown578;
+		unsigned char roundsWins, knockOutState, unknown576, kdAnimationFinished, unknown578;
 		unsigned char unknown579[3]; // align 3?
 
 		//offset 0x57c
@@ -177,7 +178,7 @@ namespace v2 {
 		bool blockObjectSpawned;
 		char unknown7F6;
 		bool damageLimited; // = 0;
-		short unknown7F8; // = 0;
+		short noGainTimer; // = 0; set to 120 during spell action
 		char unknown7FA[2]; // align 2?
 		float unknown7FC; // = .0;
 		bool skillCancelsUsed[5]; // = 0;
@@ -191,7 +192,7 @@ namespace v2 {
 		short unknown818[10]; // = 0;
 		float unknown82C, unknown830; // = .0;
 		short tenguFans; // = 0;
-		char unknown836; // +0x836 = 0; align 1?
+		bool lockCardUse; // +0x836 = 0; mainly for hakuroken
 		char unknown837;
 		float unknown838; // = .0;
 		char unknown83C; // = 0;
