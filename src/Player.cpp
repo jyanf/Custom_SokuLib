@@ -222,7 +222,8 @@ namespace v2 {
 	PlayerAlice::PlayerAlice(const PlayerInfo& info) :
 		Player(info)
 	{
-		this->unknown138 = -6; objectList = new GameObjectList_Alice(this);
+		this->shadowOffset = -6;
+		this->objectList = new GameObjectList_Alice(this);
 	}
 	PlayerPatchouli::PlayerPatchouli(const PlayerInfo& info) :
 		Player(info)
@@ -267,7 +268,8 @@ namespace v2 {
 	PlayerIku::PlayerIku(const PlayerInfo& info) :
 		Player(info)
 	{
-		this->unknown138 = -6; objectList = new GameObjectList_Iku(this);
+		this->shadowOffset = -6;
+		this->objectList = new GameObjectList_Iku(this);
 	}
 	PlayerTenshi::PlayerTenshi(const PlayerInfo& info) :
 		Player(info)
