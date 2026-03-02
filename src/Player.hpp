@@ -64,7 +64,7 @@ namespace v2 {
 		char unknown4C4, unknown4C5; // 48b000: +0x4c4 = 0 align 1?
 		short unknown4C6; // = 0; 
 		int skillCancelCount; // = 0
-		char unknown4CC, hasSpotlight; // = 0
+		bool cardsShuffled, hasSpotlight; // = 0
 		short spotlightStrength; // = 0
 		float speedPower; // = 1.0
 		short riverMistCounter, unknown4D6; // = 0
@@ -96,7 +96,8 @@ namespace v2 {
 
 		// 0x56C: = {0,0,0,0, 0,1,1,0, 0,0,0,0, 0,?,?,?};
 		bool canGrazeMelee, crushOnWB, skillsMax, unknown56F;
-		bool unknown570, lockedInStageX, lockedInStageY; unsigned char score;
+		bool cardsHidden, lockedInStageX, lockedInStageY;
+		unsigned char score;
 		unsigned char roundsWins, knockOutState, unknown576, kdAnimationFinished, unknown578;
 		unsigned char unknown579[3]; // align 3?
 
