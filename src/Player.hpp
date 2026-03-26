@@ -53,7 +53,7 @@ namespace v2 {
 		char groundDashCount, airDashCount, unknown49C; // = 0
 		bool guardSucceed; // = 0; indicates that guarding move has successfully blocked
 		short currentSpirit, maxSpirit; // = 100
-		short spiritRegenDelay, timeWithBrokenOrb, spellStopCounter, timeStop, unknown4AA; // = 0
+		short spiritRegenDelay, timeWithBrokenOrb, spellStopCounter, timeStop, blockDisabled; // = 0
 		char unknown4AC;
 		ComboModifers comboModifiers; // = 0
 		char unknown4AE[2]; // align 2?
@@ -328,7 +328,8 @@ namespace v2 {
 		char unknown890[0x24];
 		unsigned short fantasyHeavenTimer;
 		unsigned short fantasyHeavenStacks;
-		char unknown8B8[0x4];
+		unsigned short fantasyHeavenAlreadyHit;
+		char unknown8BA[0x2];
 
 		PlayerReimu(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -471,7 +472,10 @@ namespace v2 {
 
 	class PlayerIku : public Player {
 	public:
-		char unknown890[0x18];
+		char unknown890[0xC];
+		unsigned short veilsLikeWind;
+		unsigned short veilsLikeTime;
+		char unknown8A0[0x8];
 
 		PlayerIku(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -512,7 +516,7 @@ namespace v2 {
 
 	class PlayerMeirin : public Player {
 	public:
-		char unknown890[0x04];
+		int tigerEnergyReleaseTimeLeft;
 
 		PlayerMeirin(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()

@@ -176,7 +176,7 @@ namespace v2 {
 		virtual GameObject* createObject(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 		virtual GameObject* createChild(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 
-		void trackOpponent(float turnBias, float turnMax, float yOffset); // 48CCA0
+		void trackOpponent(float minTurn, float maxTurn, float yOffset); // 48CCA0
 		bool checkGrazed(int density);
 		bool checkProjectileHit(int density);
 		bool checkTurnIntoCrystals(bool onlyAirHit, int bigCrystalCount, int smallCrystalCount, float offsetX = 0, float offsetY = 0); // 48CE90
