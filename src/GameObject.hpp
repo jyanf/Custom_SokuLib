@@ -177,7 +177,7 @@ namespace v2 {
 		virtual GameObject* createObject(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 		virtual GameObject* createChild(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 
-		void trackOpponent(float turnBias, float turnMax, float yOffset); // 48CCA0
+		void trackOpponent(float minTurn, float maxTurn, float yOffset); // 48CCA0
 		void transformVelocity(float angle, float speed, float rotation, float xScale, float yScale); // 48C650
 		bool checkGrazed(int density);
 		bool checkProjectileHit(int density);

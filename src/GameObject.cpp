@@ -85,8 +85,8 @@ namespace v2 {
 		(this->*union_cast<void(GameObjectBase::*)(int, int, short, bool)>(0x4649B0))(damage, rate, hitCount, applyModifiers);
 	}
 
-	void GameObject::trackOpponent(float bias, float max, float yOffset) {
-		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(bias, max, yOffset);
+	void GameObject::trackOpponent(float minTurn, float maxTurn, float yOffset) {
+		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(minTurn, maxTurn, yOffset);
 	}
 	
 	void GameObject::transformVelocity(float angle, float speed, float rotation, float xScale, float yScale) {
