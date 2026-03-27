@@ -54,6 +54,7 @@ namespace v2 {
 	void AnimationObject::render2() { return (this->*union_cast<void (AnimationObject::*)()>(0x439190))(); }
 	void AnimationObject::applyTransform() { return (this->*union_cast<void (AnimationObject::*)()>(0x438E00))(); }
 	void AnimationObject::onRenderEnd() { return (this->*union_cast<void (AnimationObject::*)()>(0x439040))(); }
+	void AnimationObject::refreshSprite() { return (this->*union_cast<void (AnimationObject::*)()>(0x43A250))(); }
 	void AnimationObject::resetRenderInfo() { return (reinterpret_cast<void (__thiscall *)(SpriteEx &)>(0x438BB0))(this->sprite); }
 	void AnimationObject::updateSpeedAngled(float angle, float velocity) { return (reinterpret_cast<void (__thiscall *)(SpriteEx &, float, float)>(0x438C00))(this->sprite, angle, velocity); }
 	void AnimationObject::setTextureBounds(float left, float top, float width, float height) { return (this->*union_cast<void (AnimationObject::*)(float, float, float, float)>(0x438FC0))(left, top, width, height); }
