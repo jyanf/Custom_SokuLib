@@ -58,7 +58,7 @@ namespace v2 {
 		short forcedCounterHits = 0; // = 0
 		float unknown1A4 = 0; // = .0
 		float unknown1A8 = 0; // = .0
-		bool allowEntity = 1; // entity collision will be ignored if 0
+		bool allowEntity = true; // entity collision will be ignored if 0
 		char unknown1AD[3]; // align 0x3?// offset 0x1b0
 		struct CustomHitBox {
 			Box box;
@@ -116,6 +116,7 @@ namespace v2 {
 		void setHitBoxData(int left, int top, int right, int bottom, short rotation, short rotAnchorX, short rotAnchorY); // 4b0e40;
 		void setClipMask(short actionId); //0x466670; only support 1 bit alpha
 		void damageOpponent(int damage, int rate, short hitCount, bool applyModifiers); // 0x4649b0: :Rate is *1000 (850 is 85% rate)
+		void setParent(GameObjectBase *player); // 0x50ced0
 		GameObjectBase* createEffect(int action, float x, float y, int dir, char layer); // 438ce0
 	}; // 0x34C
 
