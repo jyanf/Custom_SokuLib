@@ -277,15 +277,11 @@ namespace v2 {
 		bool isGrounded(); // 0x463530
 		void updateDefaultBehavior();
 		SokuLib::v2::GameObject* createObject(short action, float x, float y, char direction, char layer, float *extraData, unsigned int extraDataSize); // 46eb30
-
+		SokuLib::v2::GameObject *createObject(short action, float x, float y, char direction, char layer);
 		template<size_t size>
 		SokuLib::v2::GameObject *createObject(short action, float x, float y, char direction, char layer, float (&extraData)[size]) {
 			// Mimics 0x46EB30
 			return this->objectList->createObject(nullptr, this, action, x, y, direction, layer, extraData, size);
-		}
-		SokuLib::v2::GameObject *createObject(short action, float x, float y, char direction, char layer) {
-			// Mimics 0x46EB30
-			return this->objectList->createObject(nullptr, this, action, x, y, direction, layer, nullptr, 0);
 		}
 
 		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Player, T>>>

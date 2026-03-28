@@ -93,6 +93,10 @@ namespace v2 {
 		return (this->*union_cast<void (GameObject::*)(float, float, float, float, float)>(0x48c650))(angle, speed, rotation, xScale, yScale);
 	}
 
+	void GameObjectBase::setParent(GameObjectBase *player) {
+		return (this->*union_cast<void (GameObjectBase::*)(GameObjectBase *)>(0x50CED0))(player);
+	}
+
 	void GameObject::setTail(short actionId, float width, int length, int subdivide, int mode) {
 		return (this->*union_cast<void (GameObject::*)(short, float, int, int, int)>(0x4b0f50))(actionId, width, length, subdivide, mode);
 	}

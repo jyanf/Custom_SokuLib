@@ -181,6 +181,10 @@ namespace v2 {
 		// Mimics 0x46EB30
 		return this->objectList->createObject(nullptr, this, action, x, y, direction, layer, extraData, extraDataSize);
 	}
+	SokuLib::v2::GameObject *Player::createObject(short action, float x, float y, char direction, char layer) {
+		// Mimics 0x46EB30
+		return this->objectList->createObject(nullptr, this, action, x, y, direction, layer, nullptr, 0);
+	}
 
 	IMPL_PLAYER_VIRTUALS(PlayerReimu, ((void** const)_vtable_info<v2::PlayerReimu>::baseAddr))
 	IMPL_PLAYER_VIRTUALS(PlayerMarisa, ((void** const)_vtable_info<v2::PlayerMarisa>::baseAddr))
