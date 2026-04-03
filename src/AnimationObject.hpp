@@ -34,7 +34,7 @@ namespace v2 {
 		bool isGui = false;
 		bool isActive = false; // actually controls stage fx (like shadow)
 		// align 0x2
-		float shadowOffset; // displacement in Y (Player objects sets this to -6)
+		float shadowOffset = 0; // displacement in Y (Player objects sets this to -6)
 
 		// offset 0x13C
 		struct FrameState {
