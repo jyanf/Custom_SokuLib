@@ -178,25 +178,25 @@ namespace v2 {
 		bool chargedAttack;
 		bool blockObjectSpawned;
 		char unknown7F6;
-		bool damageLimited; // = 0;
-		short noGainTimer; // = 0; set to 120 during spell action
+		bool damageLimited = false; // = 0;
+		short noGainTimer = 0; // = 0; set to 120 during spell action
 		char unknown7FA[2]; // align 2?
-		float unknown7FC; // = .0;
+		float unknown7FC = 0; // = .0;
 		bool skillCancelsUsed[5]; // = 0;
 		char unknown805[3]; // align 3?
 		float riverMistTimer; // = .0;
-		char unknown80C; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
-		char unknown80D; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
-		bool isBELocked; // Automatically set to true when opponent is in a spell animation (between 600 and 688)
-		char unknown80F; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
-		int unknown810, unknown814; // 48b000: = 0; (auraFXDelay, auraDuration)
+		bool forceBounce = false; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
+		char unknown80D = 0; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
+		bool isBELocked = false; // Automatically set to true when opponent is in a spell animation (between 600 and 688)
+		char unknown80F = 0; // 48b000: (+80D, +80E) = .0; (+80D = isAuraActive)
+		int unknown810 = 0, unknown814 = 0; // 48b000: = 0; (auraFXDelay, auraDuration)
 		short unknown818[10]; // = 0;
-		float unknown82C, unknown830; // = .0;
-		short tenguFans; // = 0;
+		float unknown82C = 0, unknown830 = 0; // = .0;
+		short tenguFans = 0; // = 0;
 		bool lockCardUse; // +0x836 = 0; mainly for hakuroken
 		char unknown837;
-		float unknown838; // = .0;
-		char unknown83C; // = 0;
+		float unknown838 = 0; // = .0;
+		char unknown83C = 0; // = 0;
 		char unknown83D[3]; // align 3?
 		float sacrificialDolls, controlRod, magicPotionTimeLeft; // = .0;
 		short stopwatchTimeLeft, dragonStarTimeLeft, drops, dropInvulTimeLeft; // = 0;
@@ -204,17 +204,17 @@ namespace v2 {
 		float unknown858;
 		float unknown85C;
 		float unknown860;
-		float unknown864; // = .0;
-		char unknown868; // +0x868 = 0; align 1?
+		float unknown864 = 0; // = .0;
+		char unknown868 = 0; // +0x868 = 0; align 1?
 		char unknown869;
-		short unknown86A; // = 0;
-		int unknown86C; // = 0;
+		short unknown86A = 0; // = 0;
+		int unknown86C = 0; // = 0;
 		int unknown870;
 		int unknown874;
 		int unknown878;
 		int unknown87C;
 		char unknown880;
-		char unknown881; // +0x880 = 0; align 1?
+		char unknown881 = 0; // +0x880 = 0; align 1?
 		short unknown882;
 		short unknown884;
 		short unknown886;
