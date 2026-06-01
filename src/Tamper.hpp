@@ -13,6 +13,47 @@
 
 namespace SokuLib
 {
+	namespace details {
+		template<typename T>
+		inline DWORD *ptrFromDest(T dest)
+		{
+			static_assert(!std::is_const_v<T>);
+			static_assert(std::is_integral_v<T> && sizeof(T) == sizeof(DWORD) || std::is_pointer_v<T>);
+			return reinterpret_cast<DWORD *>(dest);
+		}
+
+		template<typename T>
+		inline DWORD intFromValue(T value)
+		{
+			if constexpr (std::is_integral_v<T> && sizeof(T) == sizeof(DWORD))
+				return value;
+			else if constexpr (std::is_member_function_pointer_v<T>)
+				return SokuLib::union_cast<DWORD>(value);
+			else if constexpr (std::is_pointer_v<T>)
+				return *reinterpret_cast<const DWORD *>(&value);
+			else
+				static_assert(false, "Invalid type provided for source");
+		}
+	}
+
+	inline DWORD TamperDword(DWORD *dest, DWORD value)
+	{
+		DWORD old = *dest;
+
+		*dest = value;
+		return old;
+	}
+
+	template<typename T, typename T2>
+	inline auto TamperDword(T2 baseAddr, T target) {
+		DWORD old = TamperDword(details::ptrFromDest(baseAddr), details::intFromValue(target));
+
+		if constexpr (std::is_integral_v<T2>)
+			return SokuLib::union_cast<T>(old);
+		else
+			return SokuLib::union_cast<std::remove_pointer_t<T2>>(old);
+	}
+/*
 	template<typename T, typename T2>
 	inline T2 TamperDword(T2 *baseAddr, T target) {
 		auto old = *reinterpret_cast<PDWORD>(baseAddr);
@@ -28,7 +69,7 @@ namespace SokuLib
 		*reinterpret_cast<PDWORD>(addr) = *reinterpret_cast<PDWORD>(&target);
 		return SokuLib::union_cast<T>(old);
 	}
-
+*/
 	inline DWORD TamperDwordAdd(DWORD addr, DWORD delta) {
 		DWORD old = *reinterpret_cast<PDWORD>(addr);
 
