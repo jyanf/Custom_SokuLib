@@ -1,3 +1,4 @@
+#include <windows.h>
 #include "IFileReader.hpp"
 #include "SokuAddresses.hpp"
 #include "UnionCast.hpp"
@@ -55,5 +56,9 @@ namespace SokuLib
 		return reader;
 	}
 
+#if _MSC_VER >= 1930
 	auto readPattern = (void (*)(const char *characterName, unsigned paletteId, Map<int, v2::CharacterSequenceData*> *patternMap, Deque<v2::CharacterSequenceData> *patternData, Vector<int> *textureMap))0x4679e0;
+#else
+	void (*readPattern)(const char *characterName, unsigned paletteId, Map<int, v2::CharacterSequenceData*> *patternMap, Deque<v2::CharacterSequenceData> *patternData, Vector<int> *textureMap) = (void (*)(const char *characterName, unsigned paletteId, Map<int, v2::CharacterSequenceData*> *patternMap, Deque<v2::CharacterSequenceData> *patternData, Vector<int> *textureMap))0x4679e0;
+#endif
 }
