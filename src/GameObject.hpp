@@ -110,6 +110,7 @@ namespace v2 {
 		virtual void initializeAction() = 0; // 0x3C
 		virtual void updatePhysics(); // 0x40
 
+		void reflectedBy(GameObjectBase *other); // 465100
 		void initDefaultObject(); // 48d000
 		void updateDefaultObject(); // 48db20
 		void initWeatherDebuffEffect(); // 48cb50
