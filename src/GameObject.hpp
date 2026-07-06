@@ -121,7 +121,7 @@ namespace v2 {
 		void setHitBoxData(int left, int top, int right, int bottom, short rotation, short rotAnchorX, short rotAnchorY); // 4b0e40;
 		void setClipMask(short actionId); //0x466670; only support 1 bit alpha
 		void damageOpponent(int damage, int rate, short hitCount, bool applyModifiers); // 0x4649b0: :Rate is *1000 (850 is 85% rate)
-		void setParent(GameObjectBase *player); // 0x50ced0
+		void setParentA(GameObjectBase *player); // 0x50ced0
 		GameObjectBase* createEffect(int action, float x, float y, int dir, char layer); // 438ce0
 	}; // 0x34C
 
@@ -182,6 +182,7 @@ namespace v2 {
 		virtual GameObject* createObject(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 		virtual GameObject* createChild(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 
+		void setParentB(GameObject *parent); // 74C890
 		void trackOpponent(float minTurn, float maxTurn, float yOffset); // 48CCA0
 		bool checkGrazed(int density);
 		bool checkProjectileHit(int density);

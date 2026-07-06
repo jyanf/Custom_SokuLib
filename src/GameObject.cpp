@@ -101,11 +101,7 @@ namespace v2 {
 		(this->*union_cast<void(GameObjectBase::*)(int, int, short, bool)>(0x4649B0))(damage, rate, hitCount, applyModifiers);
 	}
 
-	void GameObject::trackOpponent(float minTurn, float maxTurn, float yOffset) {
-		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(minTurn, maxTurn, yOffset);
-	}
-
-	void GameObjectBase::setParent(GameObjectBase *player) {
+	void GameObjectBase::setParentA(GameObjectBase *player) {
 		return (this->*union_cast<void (GameObjectBase::*)(GameObjectBase *)>(0x50CED0))(player);
 	}
 
@@ -115,6 +111,10 @@ namespace v2 {
 
 	void GameObject::setTail(short actionId, float width, int length, int subdivide, int mode) {
 		return (this->*union_cast<void (GameObject::*)(short, float, int, int, int)>(0x4b0f50))(actionId, width, length, subdivide, mode);
+	}
+
+	void GameObject::trackOpponent(float minTurn, float maxTurn, float yOffset) {
+		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(minTurn, maxTurn, yOffset);
 	}
 
 	GameObject::~GameObject() {
@@ -177,6 +177,8 @@ namespace v2 {
 		}
 		return false;
 	}
+
+	void GameObject::setParentB(GameObject *parent) { return (this->*union_cast<void (GameObject::*)(GameObject *)>(0x74C890))(parent); }
 
 	void TailObject::initialize(GameObjectBase* parent, FrameData* frameData, float paramA, int paramB, int paramC, int paramD) {
 		return (this->*union_cast<void (TailObject::*)(GameObjectBase*, FrameData*, float, int, int, int)>(0x433f90))
