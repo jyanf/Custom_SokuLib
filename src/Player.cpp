@@ -138,7 +138,7 @@ namespace v2 {
 	SokuLib::CardInfo* Player::DeckInfo::cardLookup(unsigned short id) { return (this->*union_cast<SokuLib::CardInfo* (Player::DeckInfo::*)(unsigned short)>(0x436620))(id); }
 	void Player::loadResources() { return (this->*union_cast<void(Player::*)()>(0x46c0b0))(); }
 	bool Player::updateGroundMovement(float value) { return (this->*union_cast<bool(Player::*)(float)>(0x487740))(value); }
-	float Player::decideShotAngle(float maxA, float minA) { (this->*union_cast<void(Player::*)(float, float)>(0x4877C0))(maxA, minA); return this->gpFloat[5]; }//set this+0x7F0, which is now gpFloat[5]
+	float Player::decideShotAngle(float maxA, float minA) { (this->*union_cast<void(Player::*)(float, float)>(0x4877C0))(maxA, minA); return this->decidedShotAngle; }//set this+0x7F0
 	void Player::addCardMeter(int value) { return (this->*union_cast<void(Player::*)(int)>(0x487870))(value); }
 	void Player::checkTurnAround() { return (this->*union_cast<void(Player::*)()>(0x487C20))(); }
 	void Player::playSpellBackground(int a0, int a1) { return (this->*union_cast<void(Player::*)(int, int)>(0x46b370))(a0, a1); }
@@ -152,7 +152,8 @@ namespace v2 {
 	void Player::eventSpellUse() { return (this->*union_cast<void(Player::*)()>(0x483d60))(); }
 	void Player::eventWeatherCycle() { return (this->*union_cast<void(Player::*)()>(0x483db0))(); }
 	bool Player::handleCardSwitch() { return (this->*union_cast<bool(Player::*)()>(0x487890))(); }
-	void Player::FUN_0046d950() { return (this->*union_cast<void(Player::*)()>(0x46d950))(); }
+	void Player::refreshInputCombination() { return (this->*union_cast<void(Player::*)()>(0x46d950))(); }
+	void Player::refreshInputBuffer() { return (this->*union_cast<void(Player::*)()>(0x46cac0))(); }
 	bool Player::handleHJ() { return (this->*union_cast<bool(Player::*)()>(0x487900))(); }
 	bool Player::handleGroundBE() { return (this->*union_cast<bool(Player::*)()>(0x487990))(); }
 	bool Player::handleGroundDash(int moveLock, int hjCancelable) { return (this->*union_cast<bool(Player::*)(int, int)>(0x48a220))(moveLock, hjCancelable); }

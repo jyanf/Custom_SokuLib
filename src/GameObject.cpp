@@ -88,9 +88,17 @@ namespace v2 {
 	void GameObject::trackOpponent(float bias, float max, float yOffset) {
 		return (this->*union_cast<void (GameObjectBase::*)(float, float, float)>(0x48CCA0))(bias, max, yOffset);
 	}
+	
+	void GameObject::transformVelocity(float angle, float speed, float rotation, float xScale, float yScale) {
+		return (this->*union_cast<void (GameObject::*)(float, float, float, float, float)>(0x48c650))(angle, speed, rotation, xScale, yScale);
+	}
 
 	void GameObject::setTail(short actionId, float width, int length, int subdivide, int mode) {
 		return (this->*union_cast<void (GameObject::*)(short, float, int, int, int)>(0x4b0f50))(actionId, width, length, subdivide, mode);
+	}
+
+	void GameObject::removeTail() {
+		return (this->*union_cast<void (GameObject::*)()>(0x4b0f20))();
 	}
 
 	GameObject::~GameObject() {

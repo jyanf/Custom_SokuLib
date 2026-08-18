@@ -157,9 +157,10 @@ namespace v2 {
 		GameObject* parentObject;
 
 		// General purpose counters (0x36C)
-		short gpShort[6] = {0};
-		float gpFloat[3] = {0};
-		char unknown384[0x10] = {0};
+		short gpShort[5] = {0};
+		char unknown376[2]; // align 2?
+		float gpFloat[5] = {0};
+		float transformedVelocityAngle, transformedVelocitySpeed; //result of FUN_48c650
 		short grazeCounter = 0;
 		short otherProjectileHit = 0;
 
@@ -177,10 +178,12 @@ namespace v2 {
 		virtual GameObject* createChild(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 
 		void trackOpponent(float turnBias, float turnMax, float yOffset); // 48CCA0
+		void transformVelocity(float angle, float speed, float rotation, float xScale, float yScale); // 48C650
 		bool checkGrazed(int density);
 		bool checkProjectileHit(int density);
 		bool checkTurnIntoCrystals(bool onlyAirHit, int bigCrystalCount, int smallCrystalCount, float offsetX = 0, float offsetY = 0); // 48CE90
 		void setTail(short actionId, float width, int length, int subdivide, int mode); // subdivide unsure
+		void removeTail(); //4B0F20
 	}; // 0x3AC
 
 #define DECL_GAMEOBJECT_VIRTUALS() \
