@@ -173,9 +173,11 @@ namespace v2 {
 			// align 0x3
 		} inputData;
 
-		short gpShort[6]; // 0x7D0 - 0x7DA
-		float gpFloat[6]; // 0x7DC - 0x7F0
-		bool chargedAttack;
+		short gpShort[5]; // = { 0 }; 0x7D0 - 0x7D8
+		char unknown7DA[2]; // align 2?
+		float gpFloat[5]; // = { 0 }; 0x7DC - 0x7EC
+		float decidedShotAngle; // result of decideShotAngle
+		bool chargedAttack; // = false;
 		bool blockObjectSpawned;
 		char unknown7F6;
 		bool damageLimited = false; // = 0;
@@ -270,7 +272,8 @@ namespace v2 {
 		void eventSkillUse(); // 0x483ce0
 		void eventSpellUse(); // 0x483d60
 		void eventWeatherCycle(); // 0x483db0
-		void FUN_0046d950(); // 0x46d950
+		void refreshInputCombination(); // 0x46d950
+		void refreshInputBuffer(); // 0x46cac0
 		bool isGrounded(); // 0x463530
 		void updateDefaultBehavior();
 		SokuLib::v2::GameObject* createObject(short action, float x, float y, char direction, char layer, float *extraData, unsigned int extraDataSize); // 46eb30
@@ -480,9 +483,25 @@ namespace v2 {
 
 	class PlayerTenshi : public Player {
 	public:
-		char unknown890[0x94];
+		float pillarHeights[8];
+		float keystonePosX[12], keystonePosY[12]; // used by story spell: Spirit Thought "Stone that Calms the Lands"
+		float keystoneIndex;//0x910 0~11 looping
+		float backgroundOffset;//0x914 change stage#5 background horizon for the last 2 story spells
+		bool pillarEnabled;//0x918
+		char unknown919;//align?
+
+		short guardingKeystonesTimer;//0x91a
+		short guardingKeystonesType;//0x91c 0 for None, 1 for B ver, 2 for C ver
+		char unknown91E[2];//align 2?
+		int guardingKeystonesCount;//0x920
+
 		unsigned short stateOfEnlightenmentTimeLeft;
-		char unknown926[0xA];
+		char unknown926[6];
+
+		bool skyAttackUsed; //0x92c block movement cancel or another sky attack before landed
+		char unknown92D;//align?
+
+		short swordState;// for final spell ko cutscene, 0= not started, 1 = flying, 2 = landed
 
 		PlayerTenshi(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
