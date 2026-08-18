@@ -101,16 +101,16 @@ namespace v2 {
 		(this->*union_cast<void(GameObjectBase::*)(int, int, short, bool)>(0x4649B0))(damage, rate, hitCount, applyModifiers);
 	}
 	
-	void GameObject::transformVelocity(float angle, float speed, float rotation, float xScale, float yScale) {
-		return (this->*union_cast<void (GameObject::*)(float, float, float, float, float)>(0x48c650))(angle, speed, rotation, xScale, yScale);
-	}
-
 	void GameObjectBase::setParentA(GameObjectBase *player) {
 		return (this->*union_cast<void (GameObjectBase::*)(GameObjectBase *)>(0x50CED0))(player);
 	}
 
 	void GameObjectBase::reflectedBy(GameObjectBase *other) {
 		return (this->*union_cast<void (GameObjectBase::*)(GameObjectBase *)>(0x465100))(other);
+	}
+
+	void GameObject::transformVelocity(float angle, float speed, float rotation, float xScale, float yScale) {
+		return (this->*union_cast<void (GameObject::*)(float, float, float, float, float)>(0x48c650))(angle, speed, rotation, xScale, yScale);
 	}
 
 	void GameObject::setTail(short actionId, float width, int length, int subdivide, int mode) {
