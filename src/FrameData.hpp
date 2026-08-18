@@ -205,8 +205,8 @@ namespace SokuLib
 			Vector<Box> attackBoxes;
 			Vector<Box*> extraBoxes;
 			// 0x88
-			Vector2<int> extra1, extra2, extra3;
-			short unknownA0, unknownA2, unknownA4;
+			Vector2<int> customVector[3];
+			short customShort[3];
 			// align 0x2
 
 			virtual ~CharacterFrameData();

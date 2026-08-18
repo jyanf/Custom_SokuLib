@@ -58,7 +58,7 @@ namespace v2 {
 		short forcedCounterHits = 0; // = 0
 		float unknown1A4 = 0; // = .0
 		float unknown1A8 = 0; // = .0
-		bool allowEntity = 1; // entity collision will be ignored if 0
+		bool allowEntity = true; // entity collision will be ignored if 0
 		char unknown1AD[3]; // align 0x3?// offset 0x1b0
 		struct CustomHitBox {
 			Box box;
@@ -110,12 +110,18 @@ namespace v2 {
 		virtual void initializeAction() = 0; // 0x3C
 		virtual void updatePhysics(); // 0x40
 
+		void reflectedBy(GameObjectBase *other); // 465100
+		void initDefaultObject(); // 48d000
+		void updateDefaultObject(); // 48db20
+		void initWeatherDebuffEffect(); // 48cb50
+		void updateWeatherDebuffEffect(); // 48c980
 		void resetForces(); // 4636b0
 		float getGroundHeight() const; // 4397f0
 		bool isOnGround() const; //439850
 		void setHitBoxData(int left, int top, int right, int bottom, short rotation, short rotAnchorX, short rotAnchorY); // 4b0e40;
 		void setClipMask(short actionId); //0x466670; only support 1 bit alpha
 		void damageOpponent(int damage, int rate, short hitCount, bool applyModifiers); // 0x4649b0: :Rate is *1000 (850 is 85% rate)
+		void setParentA(GameObjectBase *player); // 0x50ced0
 		GameObjectBase* createEffect(int action, float x, float y, int dir, char layer); // 438ce0
 	}; // 0x34C
 
@@ -176,7 +182,8 @@ namespace v2 {
 		virtual GameObject* createObject(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 		virtual GameObject* createChild(short actionId, float x, float y, char dir, char layer, float* customData, unsigned int customDataSize) = 0;
 
-		void trackOpponent(float turnBias, float turnMax, float yOffset); // 48CCA0
+		void setParentB(GameObject *parent); // 74C890
+		void trackOpponent(float minTurn, float maxTurn, float yOffset); // 48CCA0
 		bool checkGrazed(int density);
 		bool checkProjectileHit(int density);
 		bool checkTurnIntoCrystals(bool onlyAirHit, int bigCrystalCount, int smallCrystalCount, float offsetX = 0, float offsetY = 0); // 48CE90

@@ -362,15 +362,18 @@ namespace SokuLib
 
 	struct PacketDesDetState {
 		PacketType type;
-		unsigned short lX : 11;
-		unsigned short lY : 11;
-		unsigned short rX : 11;
-		unsigned short rY : 11;
-		unsigned short lHP : 10;
-		unsigned short rHP : 10;
-		unsigned short weatherCounter : 10;
-		Weather displayedWeather : 5;
-		bool _ : 1;
+		unsigned short lX;
+		unsigned short lY;
+		unsigned short rX;
+		unsigned short rY;
+		unsigned short lHP;
+		unsigned short rHP;
+		unsigned short weatherCounter;
+		Weather displayedWeather;
+		unsigned randIndex;
+		unsigned randValue;
+		unsigned frameId;
+		unsigned frameCount;
 	};
 
 	struct PacketSoku2PlayRequ {
