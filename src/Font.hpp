@@ -58,6 +58,8 @@ namespace SokuLib
 		void create();
 		void destruct();
 		void setIndirect(const FontDescription &pdesc);
+
+		static SokuLib::SWRFont &baseFont;
 	};
 
 

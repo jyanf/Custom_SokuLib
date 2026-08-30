@@ -25,4 +25,6 @@ namespace SokuLib
 	{
 		(this->*union_cast<void (SWRFont::*)(const FontDescription &)>(static_cast<unsigned int>(ADDR_SWR_FONT_SET_INDIRECT)))(pdesc);
 	}
+
+	SWRFont &SWRFont::baseFont = *reinterpret_cast<SWRFont *>(0x897020);
 }
