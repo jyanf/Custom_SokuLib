@@ -67,7 +67,7 @@ namespace SokuLib
 		unsigned short costOrSlot;
 		String description;
 
-		// offset: 0x2C
+		// offset: 0x3C
 		short apparency;
 		char rarity; // align 1
 		short cellH, cellJ, cellL;
@@ -75,7 +75,7 @@ namespace SokuLib
 		// align 3
 		int cellN;
 
-		// offset: 0x44
+		// offset: 0x50
 		short sort; // align 2
 		int texIdA; // seem to be the same for all cards
 		int texIdB; // this one differs

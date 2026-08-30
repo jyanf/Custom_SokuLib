@@ -109,7 +109,8 @@ namespace v2 {
 			Deque<unsigned short> queue;
 			unsigned char availSkills[32]; // 435a50: for (cardById) if (type = skill) availSkills[CardData.costOrSlot] = id
 
-			SokuLib::CardInfo* cardLookup(unsigned short id);
+			SokuLib::CardInfo *cardLookup(unsigned short id);
+			void addTexture(int *t);
 		} deckInfo;
 
 		// offset 0x5e4
