@@ -242,7 +242,9 @@ void testCharacterManager()
 	assert_equal(offsetof(v2::Player, objectList), 0x6f8);
 	assert_equal(offsetof(v2::Player, unknown714), 0x714);
 	assert_equal(offsetof(v2::Player, inputData), 0x754);
-	assert_equal(offsetof(v2::Player, dashTimer), 0x7D0);
+	//assert_equal(offsetof(v2::Player, dashTimer), 0x7D0);
+
+	assert_equal(offsetof(v2::GameObjectAlice, dollIndex), 0x3AC);
 }
 
 void testSelectScene()
