@@ -30,7 +30,7 @@ namespace v2 {
 			int teamId;
 			int standState; // 0x46eb80: = -1; -1: stand hide, 0: stand roll in, 1: stand keep, 2: stand fade out
 			int standCounter;
-			float standOffset;
+			float standOffset;// x axis offset; y fixed 32.0f
 			unsigned char standOpacity;
 			// align 3
 			//void FUN_46ec50(); //begin
@@ -152,7 +152,7 @@ namespace v2 {
 			unsigned int colorMask;//4631e9: masking trail sprites color (not for alpha)
 			char unknown728; // 46b9a0: = 0
 			char unknown729[3];// align 3?
-			//void FUN_463440(); //append
+			//void FUN_463440(); //append, has a bug that forgets to reset color after rendering shadow
 			//void FUN_463330(); //clear
 			//void FUN_463100(); //render
 		} trailImage;
@@ -286,6 +286,7 @@ namespace v2 {
 		void refreshInputBuffer(); // 0x46cac0
 		bool isGrounded(); // 0x463530
 		void updateDefaultBehavior();
+		void setTrailImage(int timer, int step, unsigned int colorMask); //0x46a750
 		SokuLib::v2::GameObject* createObject(short action, float x, float y, char direction, char layer, float *extraData, unsigned int extraDataSize); // 46eb30
 		SokuLib::v2::GameObject *createObject(short action, float x, float y, char direction, char layer);
 		template<size_t size>
