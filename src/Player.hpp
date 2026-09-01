@@ -27,13 +27,14 @@ namespace v2 {
 			Sprite sprite;
 
 			// offset 0x484
-			int playerId;
-			int unknown488; // 0x46eb80: = -1;
-			Vector2f unknown48C; // some coord
-			char unknown494;
+			int teamId;
+			int standState; // 0x46eb80: = -1; -1: stand hide, 0: stand roll in, 1: stand keep, 2: stand fade out
+			int standCounter;
+			float standOffset;
+			unsigned char standOpacity;
 			// align 3
-
-			//void FUN_46ec50();
+			//void FUN_46ec50(); //begin
+			//void FUN_46ec90(); //update
 		} stand;
 
 		union ComboModifers {
@@ -136,17 +137,25 @@ namespace v2 {
 		// offset 0x6f8
 		IGameObjectList* objectList;
 		Deque<CharacterSequenceData> patternData;
-		int unknown710; // 46b9a0: = 0
-
-		struct {
-			List<SpriteEx> unknown714; // unsure (maybe struct {SpriteEx,byte})
-			char unknown720 = 5;
-			char unknown721;
-			short unknown722 = 15;
-			char unknown724[4];
+		
+		int trailTimer; // 46b9a0: = 0
+		struct TrailImage {
+			using SpriteTrail = struct {
+				SpriteEx sprite;
+				char mode;//blend mode 0: normal, 1: add, 2:sub
+				char unknownf1[3];//align 3
+			};
+			List<SpriteTrail> trailSprites;
+			char trailStep = 5;//skip n-1 sprites by n step when rendering
+			char unknown721;//align 1?
+			short trailLength = 15;
+			unsigned int colorMask;//4631e9: masking trail sprites color (not for alpha)
 			char unknown728; // 46b9a0: = 0
-			char unknown729[3];
-		} unknown714;
+			char unknown729[3];// align 3?
+			//void FUN_463440(); //append
+			//void FUN_463330(); //clear
+			//void FUN_463100(); //render
+		} trailImage;
 
 		Deque<int> spellBgTextures;
 		short spellBgTimer; // = 0
