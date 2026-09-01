@@ -360,9 +360,15 @@ namespace v2 {
 
 	class PlayerAlice : public Player {
 	public:
-		char unknown890[0x2];
-		unsigned short dollCount;
-		char unknown894[0x30];
+		unsigned short SPdollCount;//0x890 max 3
+		unsigned short dollCount;//0x892 max 4
+		char unknown894[4];
+		unsigned short SPcirclePhase;//0x898 0~359 looping
+		short DRTdollCount;//0x89A used by story SC: Knight "Doll of Round Table"
+		float dollPosX[4], dollPosY[4];//0x89C~0x8B8 used by Seeker Wire tracing
+		bool unknown8bc;//unsure: SP launching doll flag?
+		bool unknown8bd[4];//unsure: Seeker Wire doll triggered?
+		char unknown8c1[3];//align 3?
 
 		PlayerAlice(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -491,8 +497,8 @@ namespace v2 {
 		bool pillarEnabled;//0x918
 		char unknown919;//align?
 
-		short guardingKeystonesTimer;//0x91a
-		short guardingKeystonesType;//0x91c 0 for None, 1 for B ver, 2 for C ver
+		unsigned short guardingKeystonesTimer;//0x91a
+		unsigned short guardingKeystonesType;//0x91c 0 for None, 1 for B ver, 2 for C ver
 		char unknown91E[2];//align 2?
 		int guardingKeystonesCount;//0x920
 

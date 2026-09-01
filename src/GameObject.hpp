@@ -216,7 +216,10 @@ namespace v2 {
 	class GameObjectReimu     : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
 	class GameObjectMarisa    : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
 	class GameObjectSakuya    : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
-	class GameObjectAlice     : public GameObject { public: char unknown3AC[4]; DECL_GAMEOBJECT_VIRTUALS() };
+	class GameObjectAlice     : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS()
+		short dollIndex;//0x3ac 0~3, used by C dolls
+		char unknown3AE[2]; // align 2?
+	};
 	class GameObjectPatchouli : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
 	class GameObjectYoumu     : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
 	class GameObjectRemilia   : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
