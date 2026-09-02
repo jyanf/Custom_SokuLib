@@ -495,7 +495,7 @@ namespace v2 {
 		unsigned short veilsLikeTime;//0x89e, 600f countdown
 
 		unsigned short cutsceneColor;//0x8a0 as story cutscene color (channel G/B) for iku's stage entrance, 0~255 increased by frame
-		char unknown8A2[0x2];//align 2?
+		char unknown8A2[2];//align 2?
 		float backgroundOffset;//change stage#4 background horizon for stage entrance cutscene
 
 		PlayerIku(const PlayerInfo&);
@@ -545,7 +545,7 @@ namespace v2 {
 
 	class PlayerChirno : public Player {
 	public:
-		char unknown890[0x04];
+		int freezeAtmosphereTimeLeft;//used by 3SC Freeze Atmosphere, 180f countdown
 
 		PlayerChirno(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
