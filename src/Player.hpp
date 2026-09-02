@@ -479,7 +479,9 @@ namespace v2 {
 
 	class PlayerKomachi : public Player {
 	public:
-		char unknown890[0x08];
+		short unknown890;//656d06: = 0
+		char unknown892[2];//align 2?
+		int wispActivationTime;//countdown by frame, spirits will be activated if > 0
 
 		PlayerKomachi(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -488,10 +490,13 @@ namespace v2 {
 
 	class PlayerIku : public Player {
 	public:
-		char unknown890[0xC];
-		unsigned short veilsLikeWind;
-		unsigned short veilsLikeTime;
-		char unknown8A0[0x8];
+		int unknown890, unknown894, unknown898;//69ae9f: = 0
+		unsigned short veilsLikeSky;//0x89c, 900f countdown
+		unsigned short veilsLikeTime;//0x89e, 600f countdown
+
+		unsigned short cutsceneColor;//0x8a0 as story cutscene color (channel G/B) for iku's stage entrance, 0~255 increased by frame
+		char unknown8A2[0x2];//align 2?
+		float backgroundOffset;//change stage#4 background horizon for stage entrance cutscene
 
 		PlayerIku(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -513,7 +518,8 @@ namespace v2 {
 		int guardingKeystonesCount;//0x920
 
 		unsigned short stateOfEnlightenmentTimeLeft;
-		char unknown926[6];
+		char unknown926[2];//align 2?
+		int unknown928;//6bfaca: = 0
 
 		bool skyAttackUsed; //0x92c block movement cancel or another sky attack before landed
 		char unknown92D;//align?
@@ -569,7 +575,8 @@ namespace v2 {
 
 	class PlayerSuwako : public Player {
 	public:
-		char unknown890[4];
+		bool unknown890, holdspinReleased;//0x891 inform L5C/J5C rocks to shot forward
+		char unknown892[2];//align 2?
 		int curseType;//0x894, enum {None=0, Red, Green, Blue}
 		int punishType;//0x898, enum {None=0, Crush, Block, Attack, Dash}
 		bool orbsSpawned;//0x89C
