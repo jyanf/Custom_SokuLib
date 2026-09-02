@@ -470,7 +470,11 @@ namespace v2 {
 
 	class PlayerAya : public Player {
 	public:
-		char unknown890[0x08];
+		short pebbleCount;//maximum 20
+		short limitedSpecialTimeLeft;//2sc speed up, ground 360f/ air 450f countdown
+		short routeForbiddenTimeLeft;//300f countdown
+		bool unknown896;//block Graceful Dash if true, but never set?
+		char unknown897;//align 1?
 
 		PlayerAya(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -581,7 +585,7 @@ namespace v2 {
 
 	class PlayerSuwako : public Player {
 	public:
-		bool unknown890;
+		bool unknown890;//782982: = 0
 		bool unleashSignal;//0x891 inform L5C/J5C rocks to shoot forward
 		char unknown892[2];//align 2?
 		int curseType;//0x894, enum {None=0, Red, Green, Blue}
