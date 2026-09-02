@@ -564,8 +564,14 @@ namespace v2 {
 	class PlayerUtsuho : public Player {
 	public:
 		bool capeDisabled;
+		char unknown891[3];//align 3?
 		int capeTexture;
-		char unknown898[0x10];
+		float capeOffset;//texture x+y axis moving, +0.25 per frame, 0~255 looping
+		bool unleashSignal;//inform 5B/J5B/J2B... to shoot
+		bool unknown89d;//7b5eba: = 0
+		char unknown89e[0x2];//align 2?
+		int unknown8a0;//timer for an unused sc #616 like iku's Stickleback, 600f countdown
+		int abyssNovaGlow;//0~255; btw nova explosion timer is handled by a UtsuhoObject
 
 		PlayerUtsuho(const PlayerInfo&);
 		~PlayerUtsuho() override;
@@ -575,7 +581,8 @@ namespace v2 {
 
 	class PlayerSuwako : public Player {
 	public:
-		bool unknown890, holdspinReleased;//0x891 inform L5C/J5C rocks to shot forward
+		bool unknown890;
+		bool unleashSignal;//0x891 inform L5C/J5C rocks to shoot forward
 		char unknown892[2];//align 2?
 		int curseType;//0x894, enum {None=0, Red, Green, Blue}
 		int punishType;//0x898, enum {None=0, Crush, Block, Attack, Dash}
