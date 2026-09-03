@@ -242,13 +242,13 @@ namespace v2 {
 		void applyTransform() override;
 		void updatePhysics() override;
 		virtual void initialize(); // character specific initialization
-		virtual bool VUnknown48(); // check for landing
-		virtual bool VUnknown4C(int a); // something with actionId in [700,799]
+		virtual bool handleGroundMovement(); // handle landing, walking, jump, crouch input
+		virtual bool setScenarioAction(int scenarioActionId); // remap story scenario action to real action stuff
 		virtual void handleInputs() = 0; // seems to handle inputs (differs for each character)
 		virtual void checkAllMotionInputs(); // compare input buffer for sequences
-		virtual void VUnknown58() = 0;
-		virtual void VUnknown5C() = 0;
-		virtual bool VUnknown60(int a) = 0;
+		virtual void computerInputs() = 0;// generate computer AI input
+		virtual void VUnknown5C() = 0; // resets input?
+		virtual bool setCustomScenarioAction(int customScenarioActionId) = 0; //handle character specified scenario action
 
 		// Gets the character from this->characterIndex
 		void loadResources(); // 0x46c0b0
@@ -325,13 +325,13 @@ namespace v2 {
 	void initializeAction() override; \
 	void updatePhysics() override; \
 	void initialize() override; \
-	bool VUnknown48() override; \
-	bool VUnknown4C(int a) override; \
+	bool handleGroundMovement() override; \
+	bool setScenarioAction(int scenarioActionId) override; \
 	void handleInputs() override; \
 	void checkAllMotionInputs() override; \
-	void VUnknown58() override; \
+	void computerInputs() override; \
 	void VUnknown5C() override; \
-	bool VUnknown60(int a) override;
+	bool setCustomScenarioAction(int customScenarioActionId) override;
 
 	class PlayerReimu : public Player {
 	public:
@@ -372,12 +372,12 @@ namespace v2 {
 	public:
 		unsigned short SPdollCount;//0x890 max 3
 		unsigned short dollCount;//0x892 max 4
-		char unknown894[4];
+		unsigned short unknown894, unknown896;//5235a4: =0
 		unsigned short SPcirclePhase;//0x898 0~359 looping
 		short DRTdollCount;//0x89A used by story SC: Knight "Doll of Round Table"
 		float dollPosX[4], dollPosY[4];//0x89C~0x8B8 used by Seeker Wire tracing
-		bool unknown8bc;//unsure: SP launching doll flag?
-		bool unknown8bd[4];//unsure: Seeker Wire doll triggered?
+		bool SPdollTriggering;//used by SP, signal one/all dolls to shoot laser
+		bool dollTriggering[4];//used by Seeker Wire, signal the ready C doll to next seq
 		char unknown8c1[3];//align 3?
 
 		PlayerAlice(const PlayerInfo&);
@@ -571,7 +571,7 @@ namespace v2 {
 		char unknown891[3];//align 3?
 		int capeTexture;
 		float capeOffset;//texture x+y axis moving, +0.25 per frame, 0~255 looping
-		bool unleashSignal;//inform 5B/J5B/J2B... to shoot
+		bool unleashSignal;//signal 5B/J5B/J2B... to shoot
 		bool unknown89d;//7b5eba: = 0
 		char unknown89e[0x2];//align 2?
 		int unknown8a0;//timer for an unused sc #616 like iku's Stickleback, 600f countdown
@@ -586,7 +586,7 @@ namespace v2 {
 	class PlayerSuwako : public Player {
 	public:
 		bool unknown890;//782982: = 0
-		bool unleashSignal;//0x891 inform L5C/J5C rocks to shoot forward
+		bool unleashSignal;//0x891 signal L5C/J5C rocks to shoot forward
 		char unknown892[2];//align 2?
 		int curseType;//0x894, enum {None=0, Red, Green, Blue}
 		int punishType;//0x898, enum {None=0, Crush, Block, Attack, Dash}

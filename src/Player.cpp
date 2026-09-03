@@ -42,19 +42,19 @@
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[16]))(); } \
 	void CLS::initialize() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[17]))(); } \
-	bool CLS::VUnknown48() \
+	bool CLS::handleGroundMovement() \
 		{ return (this->*union_cast<bool(CLS::*)()>(VTB[18]))(); } \
-	bool CLS::VUnknown4C(int a0) \
+	bool CLS::setScenarioAction(int a0) \
 		{ return (this->*union_cast<bool(CLS::*)(int)>(VTB[19]))(a0); } \
 	void CLS::handleInputs() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[20]))(); } \
 	void CLS::checkAllMotionInputs() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[21]))(); } \
-	void CLS::VUnknown58() \
+	void CLS::computerInputs() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[22]))(); } \
 	void CLS::VUnknown5C() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[23]))(); } \
-	bool CLS::VUnknown60(int a) \
+	bool CLS::setCustomScenarioAction(int a) \
 		{ return (this->*union_cast<bool(CLS::*)(int)>(VTB[24]))(a); }
 
 namespace SokuLib {
@@ -167,8 +167,8 @@ namespace v2 {
 	void Player::applyTransform() { return (this->*union_cast<void(Player::*)()>(0x46A510))(); }
 	void Player::updatePhysics() { return (this->*union_cast<void(Player::*)()>(0x487EF0))(); }
 	void Player::initialize() { return (this->*union_cast<void(Player::*)()>(0x48B000))(); }
-	bool Player::VUnknown48() { return (this->*union_cast<bool(Player::*)()>(0x4636D0))(); }
-	bool Player::VUnknown4C(int a) { return (this->*union_cast<bool(Player::*)(int)>(0x487220))(a); }
+	bool Player::handleGroundMovement() { return (this->*union_cast<bool(Player::*)()>(0x4636D0))(); }
+	bool Player::setScenarioAction(int a) { return (this->*union_cast<bool(Player::*)(int)>(0x487220))(a); }
 	void Player::checkAllMotionInputs() { return (this->*union_cast<void(Player::*)()>(0x487020))(); }
 	void Player::updateDefaultBehavior() { return (this->*union_cast<void(Player::*)()>(0x483F40))(); }
 	bool Player::isGrounded() { return (this->*union_cast<bool(Player::*)()>(0x463530))(); }
