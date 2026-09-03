@@ -335,11 +335,15 @@ namespace v2 {
 
 	class PlayerReimu : public Player {
 	public:
-		char unknown890[0x24];
+		short rodSpawned;//the dropping gohei(purification rod) when Reimu got hit
+		char unknown892[0x2];//align 2?
+		int unknown894[8];//4ac600: = 0
+
 		unsigned short fantasyHeavenTimer;
-		unsigned short fantasyHeavenStacks;
-		unsigned short fantasyHeavenAlreadyHit;
-		char unknown8BA[0x2];
+		unsigned short fantasyHeavenStacks;//0~7
+		unsigned short fantasyHeavenAlreadyHit;// 0~1 hit recorded
+		bool dsRiftUsed;//block another Demon Sealing use before landed
+		char unknown8BB;//align 1?
 
 		PlayerReimu(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -348,9 +352,16 @@ namespace v2 {
 
 	class PlayerMarisa : public Player {
 	public:
-		char unknown890[0x2];
-		unsigned short orreriesTimer;
-		char unknown894[0x18];
+		unsigned short orreriesAttackType;//0: None, 1:B bullets, [2~5]: B emitter index, 8:C lasers, 50: thrown boomerang
+		unsigned short orreriesTimer;//countdown 600f
+		unsigned short orreriesActiveTimer;//countdown, B:40f, C:60f
+		char unknown896[2];//align 2?
+
+		float orreriesRotatePhase;// -=speed
+		float orreriesRotateSpeed;//type0: 3, type1: 12, type8: 0.5, type50: 12
+		float orreriesThrowTargetX, orreriesThrowTargetY;//record decided target pos when throwing out
+		bool orreriesThrown;//reusing 2sc throws orreries out as boomerang
+		char unknown8A9[3];//align 3?
 
 		PlayerMarisa(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
