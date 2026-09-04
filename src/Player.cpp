@@ -311,7 +311,7 @@ namespace v2 {
 	PlayerYoumu::PlayerYoumu(const PlayerInfo& info) :
 		Player(info)
 	{
-		memset(this->unknown8C0, 0, 0x10); // [0x8c0-0x8d0] = 0
+		memset(&this->cloneBuffer.m_table, 0, 0x10);  // container construct
 		this->objectList = new GameObjectList_Youmu(this);
 	}
 	PlayerUtsuho::PlayerUtsuho(const PlayerInfo& info) :
@@ -332,8 +332,8 @@ namespace v2 {
 
 	PlayerYoumu::~PlayerYoumu()
 	{
-		// unknown object destructor
-		reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(&this->unknownObject);
+		// clone buffer clear
+		reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(&this->cloneBuffer);
 	}
 	PlayerUtsuho::~PlayerUtsuho()
 	{
