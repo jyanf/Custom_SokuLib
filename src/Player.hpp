@@ -370,9 +370,14 @@ namespace v2 {
 
 	class PlayerSakuya : public Player {
 	public:
-		unsigned short worldTimer;
-		unsigned short psTimer;
-		char unknown894[0xC];
+		unsigned short worldTimer;//countdown | The World:300f, Luna Dial:210f
+		unsigned short psTimer;//Private Square, countdown 300f
+		unsigned short stopwatchTimer;//4SC Stopwatch
+		unsigned short unknown896;//4fdf9b: = 0
+		unsigned short noLimitTimer;//also lessen rate loss by 0.25
+		unsigned short dsSwordCount;//Dancing Star Sword
+		bool dsSwordTriggering;//signal one sword to shoot out
+		char unknown89D[3];//align 3?
 
 		PlayerSakuya(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -398,10 +403,14 @@ namespace v2 {
 
 	class PlayerPatchouli : public Player {
 	public:
-		unsigned short philStoneTimer;
-		char unknown892[0xE];
-		unsigned short dHardnessTimer;
-		char unknown8A2[0x6];
+		unsigned short philStoneTimer;//countdown 1200f
+		unsigned short unknown892;//56413c: =360, only set when jellyfish bubble is breached, but never reset or used
+		short unknown894, unknown896, unknown898, unknown89A;//554c70: = 0
+		unsigned short atmEdgeActivationTime;//countdown 2f, if >0 and lv1+, triggers autumn edge to trace
+		short sBubbleHitCount;//0~10
+		unsigned short dHardnessTimer;//0x8A0
+		unsigned short jfPrincessTimer;//countdown 360f
+		float sprWindSpeed;//B:14.5, C:18.5
 
 		PlayerPatchouli(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -496,7 +505,7 @@ namespace v2 {
 	public:
 		short unknown890;//656d06: = 0
 		char unknown892[2];//align 2?
-		int wispActivationTime;//countdown by frame, spirits will be activated if > 0
+		int wispActivationTime;//countdown 2f(a214)/10f(2C), spirits will be activated if > 0
 
 		PlayerKomachi(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
