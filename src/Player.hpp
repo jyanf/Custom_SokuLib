@@ -427,16 +427,7 @@ namespace v2 {
 			char hitCount;//set along with youmu's collisionLimit
 			char unknown2A[2];//align 2?
 		} cloneData;//size 0x2C
-		class CloneBuffer : public Deque<CloneData> {
-		public:
-			void pushClone(const CloneData&);//579510
-			CloneData* getClone(int index);//57cfa0
-			inline void popClone() {
-				if (empty()) return;
-				--m_size;
-				if (empty()) return;
-			}
-		} cloneBuffer;//ring history buffer, maximum 60 clones
+		Deque<CloneData> cloneBuffer;//ring history buffer, maximum 60 clones
 		bool myonSpawned;//done in initAction...
 		bool myonAttackActivated;
 		short myonAttackType;//None:0, (j)5C:1, (j)6C:2, (j)2C:3, d22B:4, d22C:7, a122:5, a222B:6, a222C:8, eye slash:10
@@ -458,7 +449,7 @@ namespace v2 {
 	class PlayerRemilia : public Player {
 	public:
 		unsigned short millVampireTimer;
-		char unknown892[0x02];
+		char unknown892[0x02];//align 2?
 
 		PlayerRemilia(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
