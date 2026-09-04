@@ -220,7 +220,9 @@ namespace v2 {
 		char unknown3AE[2]; // align 2?
 	};
 	class GameObjectPatchouli : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
-	class GameObjectYoumu     : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
+	class GameObjectYoumu     : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS()
+		void updateClone(int index);//57d000
+	};
 	class GameObjectRemilia   : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
 	class GameObjectYuyuko    : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };
 	class GameObjectYukari    : public GameObject { public: DECL_GAMEOBJECT_VIRTUALS() };

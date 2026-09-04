@@ -419,11 +419,35 @@ namespace v2 {
 
 	class PlayerYoumu : public Player {
 	public:
-		char unknown890[0x2C];
-		void *unknownObject;
-		char unknown8C0[0x16];
-		unsigned short youmuCloneTimeLeft;
-		char unknown8D8[0x14];
+		struct CloneData {
+			CharacterFrameData* frameData;
+			Vector2f position, center, scale;
+			float rotationX, rotationY, rotationZ;
+			Direction direction;
+			char hitCount;//set along with youmu's collisionLimit
+			char unknown2A[2];//align 2?
+		} cloneData;//size 0x2C
+		class CloneBuffer : public Deque<CloneData> {
+		public:
+			void pushClone(const CloneData&);//579510
+			CloneData* getClone(int index);//57cfa0
+			inline void popClone() {
+				if (empty()) return;
+				--m_size;
+				if (empty()) return;
+			}
+		} cloneBuffer;//ring history buffer, maximum 60 clones
+		bool myonSpawned;//done in initAction...
+		bool myonAttackActivated;
+		short myonAttackType;//None:0, (j)5C:1, (j)6C:2, (j)2C:3, d22B:4, d22C:7, a122:5, a222B:6, a222C:8, eye slash:10
+		unsigned short mediumBindTimer;// =(Lv+6)*30
+		unsigned short cloneTimer;// 600f
+		short cloneActivated;//block meter gain, but only set in 2sc clone
+		char unknown8DA[2];//align 2?
+		//implemente bullet-cutting in story spell Closed-Eye Slash "The Bullet-Cutting Spirit Eye from Roukan"
+		float eyeSlashPosX, eyeSlashPosY, eyeSlashRotZ;
+		bool eyeSlashActivated;
+		char unknown8E9[3];//align 3?
 
 		PlayerYoumu(const PlayerInfo&);
 		~PlayerYoumu() override;
