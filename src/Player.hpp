@@ -441,7 +441,6 @@ namespace v2 {
 		char unknown8E9[3];//align 3?
 
 		PlayerYoumu(const PlayerInfo&);
-		~PlayerYoumu() override;
 		DECL_PLAYER_VIRTUALS()
 	};
 	static_assert(sizeof(PlayerYoumu) == 0x8EC);
