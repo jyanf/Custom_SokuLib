@@ -247,7 +247,7 @@ namespace v2 {
 		virtual void handleInputs() = 0; // seems to handle inputs (differs for each character)
 		virtual void checkAllMotionInputs(); // compare input buffer for sequences
 		virtual void computerInputs() = 0;// generate computer AI input
-		virtual void VUnknown5C() = 0; // resets input?
+		virtual void updateStory() = 0; //
 		virtual bool setCustomScenarioAction(int customScenarioActionId) = 0; //handle character specified scenario action
 
 		// Gets the character from this->characterIndex
@@ -330,14 +330,14 @@ namespace v2 {
 	void handleInputs() override; \
 	void checkAllMotionInputs() override; \
 	void computerInputs() override; \
-	void VUnknown5C() override; \
+	void updateStory() override; \
 	bool setCustomScenarioAction(int customScenarioActionId) override;
 
 	class PlayerReimu : public Player {
 	public:
 		short rodSpawned;//the dropping gohei(purification rod) when Reimu got hit
 		char unknown892[0x2];//align 2?
-		int unknown894[8];//4ac600: = 0
+		int unknown894[8];//4ac600: = 0, maybe for replaced SWR cards
 
 		unsigned short fantasyHeavenTimer;
 		unsigned short fantasyHeavenStacks;//0~7
@@ -405,7 +405,7 @@ namespace v2 {
 	public:
 		unsigned short philStoneTimer;//countdown 1200f
 		unsigned short unknown892;//56413c: =360, only set when jellyfish bubble is breached, but never reset or used
-		short unknown894, unknown896, unknown898, unknown89A;//554c70: = 0
+		short unknown894, unknown896, unknown898, unknown89A;//554c70: = 0, maybe for replaced SWR cards
 		unsigned short atmEdgeActivationTime;//countdown 2f, if >0 and lv1+, triggers autumn edge to trace
 		short sBubbleHitCount;//0~10
 		unsigned short dHardnessTimer;//0x8A0
@@ -435,7 +435,7 @@ namespace v2 {
 		unsigned short cloneTimer;// 600f
 		short cloneActivated;//block meter gain, but only set in 2sc clone
 		char unknown8DA[2];//align 2?
-		//implemente bullet-cutting in story spell Closed-Eye Slash "The Bullet-Cutting Spirit Eye from Roukan"
+		//implemente bullet-cutting in story spell: Closed-Eye Slash "The Bullet-Cutting Spirit Eye from Roukan"
 		float eyeSlashPosX, eyeSlashPosY, eyeSlashRotZ;
 		bool eyeSlashActivated;
 		char unknown8E9[3];//align 3?
@@ -458,9 +458,14 @@ namespace v2 {
 
 	class PlayerYuyuko : public Player {
 	public:
-		char unknown890[0x10];
-		unsigned short resButterfliesUsed;
-		char unknown8A2[0xA];
+		//story spell: Banquet "All Things Come Full Circle in Death"
+		int banquetRestTimer;//rest 180f after rings reached max
+		int banquetElapsedTime;//dec by frame
+		int banquetRingCount;//max E/N/H/L: 1/3/4/6
+		int unknown89C;//5b8170: = 0
+		int resButterfliesUsed;
+		int giftsCount;//Gifts to the Deceased, 0~8
+		int giftsTimer;//countdown Lv*30+(count+1)*20 frames
 
 		PlayerYuyuko(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -469,7 +474,28 @@ namespace v2 {
 
 	class PlayerYukari : public Player {
 	public:
-		char unknown890[0x44];
+		short parasolSpawned;//the dropping parasol when Yukari got hit
+		short gapAbsorbCount;//0~13
+		bool unknown894;// =0, set 0 when ran is destroyed
+		char unknown895;// =0, unused?
+		char unknown896[2];//align 2?
+		//Universe of Matter and Antimatter
+		float antimatterPosX1, antimatterPosX2, antimatterPosY1, antimatterPosY2;
+		short antimatterCount;//0~2
+		//story spell: Fantacy Nest "Flying Noctilucae's Nest"
+		short fireflyFireTimer;//E/N/H/L:180/210/240/270
+		short fireflyRestTimer;//120~179 random
+		//story spell: Aerial Bait "Hyperactive High Speed Flying Object"
+		short flyObjAimedCD;//EN/H/L:70/65/60, additional aimed bait when hp below 1/3
+		short flyObjTimer;//E/N/H/L:45/80/115/150, gen new line per 10f
+		short flyObjLines;//horizontal line index, inc from 0
+		//Wings of Chimera
+		short wingsCount;//0~3
+		char unknown8B6[2];//align 2?
+		float wingsPosX[3], wingsPosY[3];
+		//story spell: "Yakumo's Nest"
+		short yakumoNestElapsedTime;//inc by frame, fire per 300f
+		char unknown8D2[2];//align 2?
 
 		PlayerYukari(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
