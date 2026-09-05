@@ -504,9 +504,10 @@ namespace v2 {
 
 	class PlayerSuika : public Player {
 	public:
-		char unknown890[0x2];
-		unsigned short mppTimer;
-		char unknown894[0x4];
+		unsigned short gakiBindTimer;//countdown 600f, dec opponent's spirit by 2 per frame (regen delay 30f)
+		unsigned short mppTimer;//countdown 480f
+		bool upMistUsed;//block another Unpleasant Mist before landed
+		char unknown895[3];
 
 		PlayerSuika(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
@@ -515,14 +516,22 @@ namespace v2 {
 
 	class PlayerUdonge : public Player {
 	public:
-		char unknown890[0x8];
+		short unkown890;// =0
+		short reisenOpacity;//0~255
+		float reisenOpacityFactor;//normally 1.0, invisible 6D related; towards 0.5 with Infrared Moon
+
 		unsigned short urFieldActive;
 		unsigned short uvFieldActive;
-		char unknown89C[0x4];
-		unsigned short elixirUsed;
-		char unknown8A2[0x10];
+		float scanAngle;//Eyesight Cleansing scan range angle
+		int elixirUsed;
+		int elixirElapsedTime;
+		short uvCloneCount;//0~2
+		char unknown8AA[2];//align 2?
+		float uvCloneSpacing;//horizontal
+		unsigned short xwaveTimeLeft;//countdown 360f
 		unsigned short infraredMoonTimeLeft;
-		char unknown8B4[0x4];
+		bool ocularSpectralUsed;//block another Ocular Spectral before landed
+		char unknown8B5[3];//align 3?
 
 		PlayerUdonge(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
