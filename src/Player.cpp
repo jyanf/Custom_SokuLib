@@ -311,7 +311,6 @@ namespace v2 {
 	PlayerYoumu::PlayerYoumu(const PlayerInfo& info) :
 		Player(info)
 	{
-		//memset(&this->cloneBuffer.m_table, 0, 0x10);
 		this->objectList = new GameObjectList_Youmu(this);
 	}
 	PlayerUtsuho::PlayerUtsuho(const PlayerInfo& info) :
@@ -330,12 +329,6 @@ namespace v2 {
 		this->objectList = new GameObjectList_Utsuho(this);
 	}
 
-	PlayerYoumu::~PlayerYoumu()
-	{
-		// clone buffer clear
-		//reinterpret_cast<void (__fastcall*)(void*)>(0x433a50)(&this->cloneBuffer);
-		this->cloneBuffer.clear();
-	}
 	PlayerUtsuho::~PlayerUtsuho()
 	{
 		SokuLib::textureMgr.remove(this->capeTexture); // remove texture in +0x894
