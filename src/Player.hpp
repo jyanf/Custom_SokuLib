@@ -606,7 +606,7 @@ namespace v2 {
 
 		PlayerTenshi(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
-	}; // TODO There's something wrong with Tenshi
+	};
 	static_assert(sizeof(PlayerTenshi) == 0x930);
 
 	class PlayerSanae : public Player {
@@ -616,8 +616,8 @@ namespace v2 {
 		Direction windDirection;
 		char unknown899[3];//align 3?
 
-		int kanakoCdTimer;//kanakoCD+30
-		int suwakoCdTimer;//suwakoCD+30
+		int kanakoCdTimer;//kanakoCD+30, dec by frame
+		int suwakoCdTimer;//suwakoCD+30, dec by frame
 		int kanakoCooldown;//8C:180, lv0:480, lv2~4: (14-Lv)*30
 		int suwakoCooldown;//4C:180, lv0:480, lv2~4: (14-Lv)*30
 
