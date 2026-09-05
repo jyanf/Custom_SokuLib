@@ -564,7 +564,11 @@ namespace v2 {
 
 	class PlayerIku : public Player {
 	public:
-		int unknown890, unknown894, unknown898;//69ae9f: = 0
+		//story spell: Cloud Realm "The Thunder Court in the Sea of Abstruse Clouds"
+		int realmTotalTimer;//harassing fire CD ENH/L:300/240f
+		int realmLaserCount;//E/N/H/L: 4/6/7/8
+		int realmTimer;// E/N/H/L: 150/140/130/120f per turn, gen new laser per 8 frames
+
 		unsigned short veilsLikeSky;//0x89c, 900f countdown
 		unsigned short veilsLikeTime;//0x89e, 600f countdown
 
@@ -584,19 +588,19 @@ namespace v2 {
 		float keystoneIndex;//0x910 0~11 looping
 		float backgroundOffset;//0x914 change stage#5 background horizon for the last 2 story spells
 		bool pillarEnabled;//0x918
-		char unknown919;//align?
+		char unknown919;//align 1?
 
 		unsigned short guardingKeystonesTimer;//0x91a
 		unsigned short guardingKeystonesType;//0x91c 0 for None, 1 for B ver, 2 for C ver
 		char unknown91E[2];//align 2?
 		int guardingKeystonesCount;//0x920
 
-		unsigned short stateOfEnlightenmentTimeLeft;
-		char unknown926[2];//align 2?
-		int unknown928;//6bfaca: = 0
+		int stateOfEnlightenmentTimeLeft;
+		//story spell: Spirit Thought "Stone that Calms the Lands"
+		int spiritThoughtTimer;//inc, drop CD E/N/H/L: 120/80/60/50f
 
 		bool skyAttackUsed; //0x92c block movement cancel or another sky attack before landed
-		char unknown92D;//align?
+		char unknown92D;//align 1?
 
 		short swordState;// for final spell ko cutscene, 0= not started, 1 = flying, 2 = landed
 
