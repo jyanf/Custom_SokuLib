@@ -359,7 +359,7 @@ namespace v2 {
 
 		float orreriesRotatePhase;// -=speed
 		float orreriesRotateSpeed;//type0: 3, type1: 12, type8: 0.5, type50: 12
-		float orreriesThrowTargetX, orreriesThrowTargetY;//record decided target pos when throwing out
+		Vector2f orreriesThrowPos;//record decided target pos when throwing out
 		bool orreriesThrown;//reusing 2sc throws orreries out as boomerang
 		char unknown8A9[3];//align 3?
 
@@ -615,10 +615,10 @@ namespace v2 {
 		Direction windDirection;
 		char unknown899[3];//align 3?
 
-		int kanakoCdTimer;//kanakoCD+30, dec by frame
-		int suwakoCdTimer;//suwakoCD+30, dec by frame
-		int kanakoCooldown;//8C:180, lv0:480, lv2~4: (14-Lv)*30
-		int suwakoCooldown;//4C:180, lv0:480, lv2~4: (14-Lv)*30
+		int kanakoCdTimer;//countdown reference kanakoCD, dec by frame
+		int suwakoCdTimer;//countdown reference suwakoCD, dec by frame
+		int kanakoCooldown;//reference value, changed with skill level
+		int suwakoCooldown;//reference value, changed with skill level
 
 		bool bshotTriggering;//signal B bullet to emit
 		bool star2cTrigerring;//signal (j)2C star to emit
