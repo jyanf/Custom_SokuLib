@@ -248,7 +248,7 @@ namespace v2 {
 		virtual void checkAllMotionInputs(); // compare input buffer for sequences
 		virtual void computerInputs() = 0;// generate computer AI input
 		virtual void updateStory() = 0; //
-		virtual bool setCustomScenarioAction(int customScenarioActionId) = 0; //handle character specified scenario action
+		virtual bool setCustomScenarioAction(int customScenarioActionId) = 0; //handle character specified scenario action, ret true means repeat instruction
 
 		// Gets the character from this->characterIndex
 		void loadResources(); // 0x46c0b0
@@ -611,11 +611,21 @@ namespace v2 {
 
 	class PlayerSanae : public Player {
 	public:
-		char unknown890[0xC];
-		int kanakoTimer;
-		int suwakoTimeLeft;
-		char unknown8A4[0xC];
+		float windSpeed;//flight wind
+		float windAngle;
+		Direction windDirection;
+		char unknown899[3];//align 3?
 
+		int kanakoCdTimer;//kanakoCD+30
+		int suwakoCdTimer;//suwakoCD+30
+		int kanakoCooldown;//8C:180, lv0:480, lv2~4: (14-Lv)*30
+		int suwakoCooldown;//4C:180, lv0:480, lv2~4: (14-Lv)*30
+
+		bool bshotTriggering;//signal B bullet to emit
+		bool star2cTrigerring;//signal (j)2C star to emit
+		bool blackoutSpawned;//used by sanae story blackout narrative
+		char unknown8AF;//align 1?
+		
 		PlayerSanae(const PlayerInfo&);
 		DECL_PLAYER_VIRTUALS()
 	};
@@ -645,7 +655,7 @@ namespace v2 {
 		char unknown891[3];//align 3?
 		int capeTexture;
 		float capeOffset;//texture x+y axis moving, +0.25 per frame, 0~255 looping
-		bool unleashSignal;//signal 5B/J5B/J2B... to shoot
+		bool bshotTriggering;//signal 5B/J5B/J2B... to emit
 		bool unknown89d;//7b5eba: = 0
 		char unknown89e[0x2];//align 2?
 		int unknown8a0;//timer for an unused sc #616 like iku's Stickleback, 600f countdown
@@ -660,7 +670,7 @@ namespace v2 {
 	class PlayerSuwako : public Player {
 	public:
 		bool unknown890;//782982: = 0
-		bool unleashSignal;//0x891 signal L5C/J5C rocks to shoot forward
+		bool rock5cTriggering;//0x891 signal L5C/J5C rocks to emit
 		char unknown892[2];//align 2?
 		int curseType;//0x894, enum {None=0, Red, Green, Blue}
 		int punishType;//0x898, enum {None=0, Crush, Block, Attack, Dash}
