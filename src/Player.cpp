@@ -52,7 +52,7 @@
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[21]))(); } \
 	void CLS::computerInputs() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[22]))(); } \
-	void CLS::VUnknown5C() \
+	void CLS::updateStory() \
 		{ return (this->*union_cast<void(CLS::*)()>(VTB[23]))(); } \
 	bool CLS::setCustomScenarioAction(int a) \
 		{ return (this->*union_cast<bool(CLS::*)(int)>(VTB[24]))(a); }
